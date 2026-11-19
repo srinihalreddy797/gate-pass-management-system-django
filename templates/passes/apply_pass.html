@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Apply Pass{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-4xl rounded-[2rem] bg-white p-8 shadow-panel dark:bg-slate-900">
+    <p class="text-sm uppercase tracking-[0.35em] text-brand-500">Pass Request</p>
+    <h2 class="mt-2 text-3xl font-bold">Apply for a gate pass</h2>
+    <form method="post" class="mt-8 grid gap-5">
+        {% csrf_token %}
+        {% for field in form %}
+            <div>
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+        <button type="submit" class="mt-2 rounded-xl bg-brand-500 px-5 py-3 font-semibold text-white hover:bg-brand-700">Submit Request</button>
+    </form>
+</div>
+{% endblock %}

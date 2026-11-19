@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Pass History{% endblock %}
+
+{% block content %}
+<div class="space-y-8">
+    <div>
+        <p class="text-sm uppercase tracking-[0.35em] text-brand-500">Pass History</p>
+        <h2 class="mt-2 text-3xl font-bold">Search and review your passes</h2>
+    </div>
+
+    <section class="rounded-[2rem] bg-white p-6 shadow-panel dark:bg-slate-900">
+        <form method="get" class="grid gap-4 md:grid-cols-[2fr,1fr,1fr,auto]">
+            <div>
+                <label for="{{ filter_form.search.id_for_label }}">Search by Pass ID</label>
+                {{ filter_form.search }}
+            </div>
+            <div>
+                <label for="{{ filter_form.status.id_for_label }}">Status</label>
+                {{ filter_form.status }}
+            </div>
+            <div>
+                <label for="{{ filter_form.date.id_for_label }}">Date</label>
+                {{ filter_form.date }}
+            </div>
+            <div class="flex items-end">
+                <button type="submit" class="w-full rounded-xl bg-slate-900 px-4 py-3 font-semibold text-white dark:bg-white dark:text-slate-900">Filter</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="rounded-[2rem] bg-white p-6 shadow-panel dark:bg-slate-900">
+        <div class="overflow-x-auto">
+            <table class="min-w-full text-left text-sm">
+                <thead class="border-b border-slate-200 text-slate-500 dark:border-slate-800 dark:text-slate-400">
+                    <tr>
+                        <th class="px-4 py-3">Pass ID</th>
+                        <th class="px-4 py-3">Purpose</th>
+                        <th class="px-4 py-3">Department</th>
+                        <th class="px-4 py-3">Out Time</th>
+                        <th class="px-4 py-3">Return Time</th>
+                        <th class="px-4 py-3">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pass in passes %}
+                        <tr class="border-b border-slate-100 dark:border-slate-800">
+                            <td class="px-4 py-4 font-semibold">{{ pass.pass_id }}</td>
+                            <td class="px-4 py-4">{{ pass.purpose }}</td>
+                            <td class="px-4 py-4">{{ pass.department }}</td>
+                            <td class="px-4 py-4">{{ pass.out_time|date:"d M Y, h:i A" }}</td>
+                            <td class="px-4 py-4">{{ pass.return_time|date:"d M Y, h:i A" }}</td>
+                            <td class="px-4 py-4">
+                                <span class="rounded-full px-3 py-1 text-xs font-semibold {% if pass.status == 'Approved' %}bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300{% elif pass.status == 'Rejected' %}bg-rose-100 text-rose-700 dark:bg-rose-950/40 dark:text-rose-300{% elif pass.status == 'Pending' %}bg-amber-100 text-amber-700 dark:bg-amber-950/40 dark:text-amber-300{% else %}bg-sky-100 text-sky-700 dark:bg-sky-950/40 dark:text-sky-300{% endif %}">
+                                    {{ pass.status }}
+                                </span>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr><td colspan="6" class="px-4 py-6 text-center text-slate-500 dark:text-slate-400">No passes found.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% include 'partials/pagination.html' with page_obj=page_obj %}
+    </section>
+</div>
+{% endblock %}

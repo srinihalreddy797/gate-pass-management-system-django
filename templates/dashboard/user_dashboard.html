@@ -1,0 +1,320 @@
+{% extends 'base.html' %}
+
+{% block title %}User Dashboard{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="gpms-dashboard">
+    <section class="gpms-stats-grid gpms-fade-in">
+        <article class="gpms-stat-card" data-count="{{ total_passes }}">
+            <div class="gpms-stat-head">
+                <div>
+                    <p class="gpms-stat-label">Total Passes</p>
+                    <strong class="gpms-stat-value">0</strong>
+                </div>
+                <span class="gpms-stat-icon">&#9633;</span>
+            </div>
+            <div class="gpms-stat-footer">
+                <span class="gpms-indicator gpms-indicator--blue"></span>
+                <span class="gpms-growth">+12.4%</span>
+            </div>
+        </article>
+
+        <article class="gpms-stat-card" data-count="{{ approved_count }}">
+            <div class="gpms-stat-head">
+                <div>
+                    <p class="gpms-stat-label">Approved</p>
+                    <strong class="gpms-stat-value">0</strong>
+                </div>
+                <span class="gpms-stat-icon">&#10003;</span>
+            </div>
+            <div class="gpms-stat-footer">
+                <span class="gpms-indicator gpms-indicator--green"></span>
+                <span class="gpms-growth">+8.2%</span>
+            </div>
+        </article>
+
+        <article class="gpms-stat-card" data-count="{{ pending_count }}">
+            <div class="gpms-stat-head">
+                <div>
+                    <p class="gpms-stat-label">Pending</p>
+                    <strong class="gpms-stat-value">0</strong>
+                </div>
+                <span class="gpms-stat-icon">&#8987;</span>
+            </div>
+            <div class="gpms-stat-footer">
+                <span class="gpms-indicator gpms-indicator--orange"></span>
+                <span class="gpms-growth">+3.1%</span>
+            </div>
+        </article>
+
+        <article class="gpms-stat-card" data-count="{{ rejected_count }}">
+            <div class="gpms-stat-head">
+                <div>
+                    <p class="gpms-stat-label">Rejected</p>
+                    <strong class="gpms-stat-value">0</strong>
+                </div>
+                <span class="gpms-stat-icon">&#10005;</span>
+            </div>
+            <div class="gpms-stat-footer">
+                <span class="gpms-indicator gpms-indicator--red"></span>
+                <span class="gpms-growth">-1.6%</span>
+            </div>
+        </article>
+    </section>
+
+    <section class="gpms-chart-grid">
+        <article class="gpms-panel gpms-panel--chart gpms-span-8 gpms-fade-in">
+            <div class="gpms-panel-head">
+                <div>
+                    <p class="gpms-eyebrow">Analytics</p>
+                    <h3>Passes per day</h3>
+                </div>
+                <span class="gpms-pill">7 days</span>
+            </div>
+            <div class="gpms-chart-canvas gpms-chart-canvas--large">
+                <canvas id="gpmsLineChart" aria-label="Passes per day line chart" role="img"></canvas>
+            </div>
+        </article>
+
+        <article class="gpms-panel gpms-panel--chart gpms-span-4 gpms-fade-in">
+            <div class="gpms-panel-head">
+                <div>
+                    <p class="gpms-eyebrow">Status</p>
+                    <h3>Distribution</h3>
+                </div>
+            </div>
+            <div class="gpms-chart-canvas gpms-chart-canvas--medium">
+                <canvas id="gpmsDonutChart" aria-label="Pass status doughnut chart" role="img"></canvas>
+            </div>
+            {% with total=approved_count|add:pending_count|add:rejected_count %}
+                <ul class="gpms-legend gpms-legend--compact">
+                    <li>
+                        <span class="dot dot--success"></span>
+                        <span>Green</span>
+                        <strong>{% if total %}{% widthratio approved_count total 100 %}%{% else %}0%{% endif %}</strong>
+                    </li>
+                    <li>
+                        <span class="dot dot--warning"></span>
+                        <span>Orange</span>
+                        <strong>{% if total %}{% widthratio pending_count total 100 %}%{% else %}0%{% endif %}</strong>
+                    </li>
+                    <li>
+                        <span class="dot dot--danger"></span>
+                        <span>Red</span>
+                        <strong>{% if total %}{% widthratio rejected_count total 100 %}%{% else %}0%{% endif %}</strong>
+                    </li>
+                </ul>
+            {% endwith %}
+        </article>
+    </section>
+
+    <section class="gpms-panel gpms-fade-in">
+        <div class="gpms-panel-head">
+            <div>
+                <p class="gpms-eyebrow">Quick Actions</p>
+                <h3>Shortcuts</h3>
+            </div>
+        </div>
+        <div class="gpms-actions-grid">
+            <a href="{% url 'apply-pass' %}" class="gpms-action-card">
+                <span class="gpms-action-card__icon">&#10133;</span>
+                <div>
+                    <strong>Apply New Pass</strong>
+                    <p>Create a new request instantly.</p>
+                </div>
+            </a>
+            <a href="{% url 'pass-list' %}" class="gpms-action-card">
+                <span class="gpms-action-card__icon">&#128196;</span>
+                <div>
+                    <strong>Download Pass</strong>
+                    <p>Open history and export records.</p>
+                </div>
+            </a>
+            <a href="{% url 'pass-list' %}" class="gpms-action-card">
+                <span class="gpms-action-card__icon">&#128338;</span>
+                <div>
+                    <strong>Pass History</strong>
+                    <p>Review your latest submissions.</p>
+                </div>
+            </a>
+            <button type="button" class="gpms-action-card gpms-action-card--disabled" aria-disabled="true">
+                <span class="gpms-action-card__icon">&#128100;</span>
+                <div>
+                    <strong>Update Profile</strong>
+                    <p>Profile management is handled by the account system.</p>
+                </div>
+            </button>
+        </div>
+    </section>
+
+    <section class="gpms-panel gpms-fade-in">
+        <div class="gpms-panel-head">
+            <div>
+                <p class="gpms-eyebrow">Recent Activity</p>
+                <h3>Timeline</h3>
+            </div>
+        </div>
+        <div class="gpms-timeline">
+            {% for pass in passes|slice:":4" %}
+                <article class="gpms-timeline-item">
+                    <div class="gpms-timeline-mark {% if pass.status == 'Approved' %}is-success{% elif pass.status == 'Rejected' %}is-danger{% else %}is-warning{% endif %}">
+                        {% if pass.status == 'Approved' %}
+                            &#10003;
+                        {% elif pass.status == 'Rejected' %}
+                            &#10005;
+                        {% else %}
+                            &#8226;
+                        {% endif %}
+                    </div>
+                    <div class="gpms-timeline-body">
+                        <div class="gpms-timeline-top">
+                            <strong>Pass #{{ pass.pass_id }} {{ pass.status }}</strong>
+                            <span>{{ pass.created_at|timesince }} ago</span>
+                        </div>
+                        <p>{{ pass.purpose|truncatechars:72 }}</p>
+                    </div>
+                </article>
+            {% empty %}
+                <div class="gpms-empty">No recent activity yet.</div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+(() => {
+    const ease = "easeOutQuart";
+    const axisColor = "rgba(148, 163, 184, 0.85)";
+    const gridColor = "rgba(255, 255, 255, 0.08)";
+    const root = document.querySelector(".gpms-dashboard");
+    const numberCards = root ? root.querySelectorAll(".gpms-stat-card[data-count]") : [];
+
+    const animateValue = (node, target, duration = 220) => {
+        const start = 0;
+        const startTime = performance.now();
+        const tick = (now) => {
+            const progress = Math.min((now - startTime) / duration, 1);
+            const value = Math.floor(start + (target - start) * progress);
+            node.textContent = value.toLocaleString();
+            if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+    };
+
+    numberCards.forEach((card) => {
+        const target = Number(card.dataset.count || 0);
+        const valueNode = card.querySelector(".gpms-stat-value");
+        if (valueNode) animateValue(valueNode, target, 240);
+    });
+
+    if (!window.Chart) return;
+
+    const lineCanvas = document.getElementById("gpmsLineChart");
+    const donutCanvas = document.getElementById("gpmsDonutChart");
+
+    if (lineCanvas) {
+        new Chart(lineCanvas, {
+            type: "line",
+            data: {
+                labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+                datasets: [{
+                    label: "Passes",
+                    data: [4, 6, 5, 9, 7, 11, 10],
+                    borderColor: "#4F7CFF",
+                    backgroundColor: "rgba(79, 124, 255, 0.16)",
+                    fill: true,
+                    tension: 0.42,
+                    borderWidth: 2,
+                    pointRadius: 3,
+                    pointHoverRadius: 5,
+                    pointBackgroundColor: "#ffffff",
+                    pointBorderColor: "#4F7CFF"
+                }, {
+                    label: "Requests",
+                    data: [2, 3, 4, 5, 6, 7, 7],
+                    borderColor: "#7C3AED",
+                    backgroundColor: "rgba(124, 58, 237, 0.12)",
+                    fill: true,
+                    tension: 0.42,
+                    borderWidth: 2,
+                    pointRadius: 2,
+                    pointHoverRadius: 4,
+                    pointBackgroundColor: "#ffffff",
+                    pointBorderColor: "#7C3AED"
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 240,
+                    easing: ease
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: "rgba(9, 9, 15, 0.96)",
+                        titleColor: "#fff",
+                        bodyColor: "#dbeafe",
+                        borderColor: "rgba(255,255,255,0.08)",
+                        borderWidth: 1,
+                        padding: 12,
+                        displayColors: false
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: axisColor }
+                    },
+                    y: {
+                        grid: { color: gridColor },
+                        ticks: { color: axisColor }
+                    }
+                }
+            }
+        });
+    }
+
+    if (donutCanvas) {
+        new Chart(donutCanvas, {
+            type: "doughnut",
+            data: {
+                labels: ["Approved", "Pending", "Rejected"],
+                datasets: [{
+                    data: [{{ approved_count }}, {{ pending_count }}, {{ rejected_count }}],
+                    backgroundColor: ["#22C55E", "#F59E0B", "#EF4444"],
+                    borderWidth: 0,
+                    hoverOffset: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: "70%",
+                animation: {
+                    duration: 240,
+                    easing: ease
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: "rgba(9, 9, 15, 0.96)",
+                        titleColor: "#fff",
+                        bodyColor: "#dbeafe",
+                        borderColor: "rgba(255,255,255,0.08)",
+                        borderWidth: 1,
+                        padding: 12,
+                        displayColors: false
+                    }
+                }
+            }
+        });
+    }
+})();
+</script>
+{% endblock %}

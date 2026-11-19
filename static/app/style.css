@@ -1,0 +1,4723 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+/* ==========================================================================
+   GPMS Premium Enterprise SaaS Theme
+   Inspired by Linear, Stripe, Vercel, GitHub, Framer, and Apple
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  --bg: #f5f7fb;
+  --bg-alt: #eef3ff;
+  --bg-elevated: rgba(255, 255, 255, 0.72);
+  --surface: rgba(255, 255, 255, 0.84);
+  --surface-solid: #ffffff;
+  --surface-strong: #f8fbff;
+  --surface-muted: rgba(241, 245, 249, 0.78);
+  --text: #0f172a;
+  --text-strong: #020617;
+  --text-muted: #64748b;
+  --text-faint: #94a3b8;
+  --border: rgba(229, 231, 235, 0.92);
+  --border-strong: rgba(203, 213, 225, 0.98);
+
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-soft: rgba(37, 99, 235, 0.12);
+  --primary-glow: rgba(37, 99, 235, 0.26);
+
+  --secondary: #7c3aed;
+  --secondary-soft: rgba(124, 58, 237, 0.12);
+  --accent: #06b6d4;
+  --accent-soft: rgba(6, 182, 212, 0.14);
+
+  --success: #22c55e;
+  --success-soft: rgba(34, 197, 94, 0.14);
+  --warning: #f59e0b;
+  --warning-soft: rgba(245, 158, 11, 0.14);
+  --danger: #ef4444;
+  --danger-soft: rgba(239, 68, 68, 0.14);
+  --info: #0ea5e9;
+  --info-soft: rgba(14, 165, 233, 0.14);
+
+  --shadow-1: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-2: 0 10px 24px rgba(15, 23, 42, 0.08);
+  --shadow-3: 0 18px 48px rgba(15, 23, 42, 0.12);
+  --shadow-4: 0 26px 72px rgba(15, 23, 42, 0.16);
+  --shadow-5: 0 34px 90px rgba(15, 23, 42, 0.2);
+  --shadow-glow: 0 0 0 1px rgba(37, 99, 235, 0.14), 0 24px 80px rgba(37, 99, 235, 0.14);
+
+  --radius-xs: 0.625rem;
+  --radius-sm: 0.875rem;
+  --radius-md: 1.125rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-2xl: 2.5rem;
+  --radius-pill: 999px;
+
+  --container: 1480px;
+  --sidebar-width: 18.5rem;
+  --nav-height: 4.5rem;
+
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --t-fast: 140ms var(--ease);
+  --t-base: 220ms var(--ease);
+  --t-slow: 360ms var(--ease);
+
+  --glass-blur: saturate(150%) blur(18px);
+}
+
+html.dark {
+  color-scheme: dark;
+
+  --bg: #050816;
+  --bg-alt: #0a1021;
+  --bg-elevated: rgba(7, 11, 24, 0.72);
+  --surface: rgba(15, 23, 42, 0.82);
+  --surface-solid: #0f172a;
+  --surface-strong: #111827;
+  --surface-muted: rgba(17, 24, 39, 0.74);
+  --text: #e2e8f0;
+  --text-strong: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-faint: #64748b;
+  --border: rgba(31, 41, 55, 0.95);
+  --border-strong: rgba(51, 65, 85, 1);
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.34);
+  --shadow-2: 0 12px 28px rgba(0, 0, 0, 0.28);
+  --shadow-3: 0 22px 56px rgba(0, 0, 0, 0.34);
+  --shadow-4: 0 32px 84px rgba(0, 0, 0, 0.44);
+  --shadow-5: 0 42px 120px rgba(0, 0, 0, 0.52);
+  --shadow-glow: 0 0 0 1px rgba(59, 130, 246, 0.2), 0 24px 96px rgba(59, 130, 246, 0.16);
+}
+
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(37, 99, 235, 0.12), transparent 26%),
+    radial-gradient(circle at 90% 0%, rgba(124, 58, 237, 0.12), transparent 22%),
+    radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.1), transparent 28%),
+    var(--bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 12% 14%, rgba(37, 99, 235, 0.12), transparent 18%),
+    radial-gradient(circle at 82% 4%, rgba(124, 58, 237, 0.1), transparent 16%),
+    radial-gradient(circle at 50% 100%, rgba(6, 182, 212, 0.08), transparent 22%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(245, 247, 251, 0.92) 36%, rgba(239, 243, 255, 0.84)),
+    var(--bg);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body.is-transitioning {
+  opacity: 0;
+  transition: opacity 220ms var(--ease);
+}
+
+body.is-transitioning-out {
+  opacity: 0;
+}
+
+body.is-transitioning-in {
+  animation: gpms-page-fade-in 380ms var(--ease) both;
+}
+
+@supports (view-transition-name: root) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.35s;
+    animation-timing-function: var(--ease);
+  }
+
+  ::view-transition-old(root) {
+    animation-name: gpms-view-old;
+  }
+
+  ::view-transition-new(root) {
+    animation-name: gpms-view-new;
+  }
+}
+
+html.dark body {
+  background:
+    radial-gradient(circle at 12% 14%, rgba(37, 99, 235, 0.2), transparent 18%),
+    radial-gradient(circle at 82% 4%, rgba(124, 58, 237, 0.15), transparent 16%),
+    radial-gradient(circle at 50% 100%, rgba(6, 182, 212, 0.1), transparent 22%),
+    linear-gradient(180deg, rgba(5, 8, 20, 0.99), rgba(8, 12, 28, 0.98) 36%, rgba(4, 8, 20, 0.99)),
+    var(--bg);
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  pointer-events: none;
+  inset: auto;
+  z-index: -2;
+  filter: blur(32px);
+  transform: translateZ(0);
+  opacity: 0.55;
+}
+
+body::before {
+  top: -7rem;
+  left: -7rem;
+  width: 22rem;
+  height: 22rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.3), transparent 68%);
+  animation: gpms-float 16s var(--ease) infinite;
+}
+
+body::after {
+  right: -8rem;
+  bottom: -8rem;
+  width: 26rem;
+  height: 26rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.24), transparent 68%);
+  animation: gpms-float 18s var(--ease) infinite reverse;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+svg {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition:
+    color var(--t-fast),
+    opacity var(--t-fast),
+    transform var(--t-fast),
+    background-color var(--t-fast),
+    border-color var(--t-fast),
+    box-shadow var(--t-fast);
+}
+
+::selection {
+  background: rgba(37, 99, 235, 0.2);
+  color: var(--text-strong);
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  color: var(--text-strong);
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+}
+
+p {
+  margin: 0;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+small,
+.text-xs,
+.text-sm {
+  color: var(--text-muted);
+}
+
+.text-4xl,
+.text-3xl,
+.text-2xl,
+.text-xl,
+.text-lg,
+.text-base {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.uppercase,
+.tracking-\[0\.35em\],
+.tracking-\[0\.4em\],
+.tracking-\[0\.12em\] {
+  letter-spacing: 0.24em;
+}
+
+.text-slate-900,
+.text-slate-800,
+.text-slate-700,
+.text-slate-600 {
+  color: var(--text) !important;
+}
+
+.text-slate-500,
+.text-slate-400 {
+  color: var(--text-muted) !important;
+}
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+
+.min-h-full {
+  min-height: 100vh;
+}
+
+main {
+  min-width: 0;
+  position: relative;
+  z-index: 0;
+}
+
+main::before {
+  content: "";
+  position: fixed;
+  inset: auto auto 14% 10%;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.12), transparent 68%);
+  filter: blur(28px);
+  pointer-events: none;
+  z-index: -1;
+  animation: gpms-float 14s var(--ease) infinite;
+}
+
+main::after {
+  content: "";
+  position: fixed;
+  inset: 10% 8% auto auto;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.1), transparent 68%);
+  filter: blur(26px);
+  pointer-events: none;
+  z-index: -1;
+  animation: gpms-float 20s var(--ease) infinite reverse;
+}
+
+aside {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-4);
+  backdrop-filter: var(--glass-blur);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(247, 250, 255, 0.76)),
+    var(--surface);
+}
+
+html.dark aside {
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.94), rgba(15, 23, 42, 0.78)),
+    var(--surface);
+}
+
+aside::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(37, 99, 235, 0.14), transparent 20%),
+    radial-gradient(circle at 85% 12%, rgba(124, 58, 237, 0.1), transparent 18%);
+}
+
+aside > div:first-child {
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent);
+}
+
+aside > div:first-child h1 {
+  letter-spacing: -0.05em;
+}
+
+aside > div:first-child button,
+#theme-toggle,
+#theme-toggle-auth {
+  min-height: 2.65rem;
+  min-width: 2.65rem;
+  border-radius: var(--radius-pill);
+}
+
+aside > .px-6 {
+  position: relative;
+  z-index: 1;
+}
+
+aside > .px-6 > div {
+  box-shadow: var(--shadow-4);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+aside nav {
+  position: relative;
+  z-index: 1;
+}
+
+aside nav a,
+aside nav button {
+  border-radius: 1rem;
+}
+
+aside nav a[href*="dashboard"] {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(124, 58, 237, 0.08));
+  border-color: rgba(37, 99, 235, 0.12);
+}
+
+aside nav a[href*="apply-pass"],
+aside nav a[href*="pass-list"],
+aside nav a[href*="security-dashboard"],
+aside nav a[href*="admin-dashboard"],
+aside nav a[href*="/admin/"] {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+@media (min-width: 768px) {
+  aside {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+}
+
+nav {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.72) transparent;
+}
+
+nav a {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+  color: var(--text);
+  transform: translateZ(0);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+nav a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(135deg, rgba(37, 99, 235, 0.14), rgba(124, 58, 237, 0.1)),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent 45%);
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity var(--t-base), transform var(--t-base);
+}
+
+nav a:hover,
+nav a:focus-visible {
+  color: var(--primary-hover);
+  border-color: rgba(37, 99, 235, 0.12);
+  box-shadow: var(--shadow-2);
+  transform: translateY(-1px);
+}
+
+nav a:active {
+  transform: translateY(0);
+}
+
+nav a:hover::before,
+nav a:focus-visible::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+nav form button {
+  position: relative;
+  overflow: hidden;
+}
+
+nav form button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.06), rgba(255, 255, 255, 0.05));
+  opacity: 0;
+  transition: opacity var(--t-base);
+}
+
+nav form button:hover::before {
+  opacity: 1;
+}
+
+nav form button {
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-2);
+}
+
+html.dark nav form button {
+  background:
+    linear-gradient(180deg, rgba(226, 232, 240, 0.96), rgba(255, 255, 255, 0.96));
+  color: #0f172a;
+}
+
+nav form button:hover {
+  box-shadow: var(--shadow-glow);
+}
+
+main > .p-4,
+main > .p-6,
+main > .p-8 {
+  position: relative;
+  z-index: 0;
+}
+
+main > .p-4::after,
+main > .p-6::after,
+main > .p-8::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 14%),
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.04), transparent 24%);
+  opacity: 0.65;
+}
+
+/* ==========================================================================
+   Glass Surfaces
+   ========================================================================== */
+
+.bg-white,
+.bg-white\/80,
+.bg-white\/90,
+section,
+div[class*="shadow-panel"],
+.rounded-\[2rem\],
+.rounded-3xl,
+.rounded-2xl {
+  backdrop-filter: var(--glass-blur);
+}
+
+.bg-white,
+.bg-white\/80,
+.bg-white\/90 {
+  background: var(--surface) !important;
+}
+
+.shadow-panel {
+  box-shadow: var(--shadow-4) !important;
+}
+
+section,
+div[class*="shadow-panel"],
+.rounded-\[2rem\],
+.rounded-3xl,
+.rounded-2xl {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-3);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(248, 250, 252, 0.74)),
+    var(--surface);
+}
+
+html.dark section,
+html.dark div[class*="shadow-panel"],
+html.dark .rounded-\[2rem\],
+html.dark .rounded-3xl,
+html.dark .rounded-2xl {
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.75)),
+    var(--surface);
+}
+
+section::before,
+div[class*="shadow-panel"]::before,
+.rounded-\[2rem\]::before,
+.rounded-3xl::before,
+.rounded-2xl::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(124, 58, 237, 0.2), rgba(6, 182, 212, 0.22));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.5;
+  transition: opacity var(--t-base);
+}
+
+section:hover::before,
+div[class*="shadow-panel"]:hover::before,
+.rounded-\[2rem\]:hover::before,
+.rounded-3xl:hover::before,
+.rounded-2xl:hover::before {
+  opacity: 0.85;
+}
+
+section::after,
+div[class*="shadow-panel"]::after,
+.rounded-\[2rem\]::after,
+.rounded-3xl::after,
+.rounded-2xl::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.2), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.08), transparent 28%);
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   Hero / Login panels
+   ========================================================================== */
+
+.mx-auto.grid.max-w-6xl > section:first-child,
+.mx-auto.grid.max-w-6xl > section:last-child {
+  min-height: 100%;
+}
+
+.mx-auto.grid.max-w-6xl > section:first-child {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.18), transparent 28%),
+    radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.14), transparent 22%),
+    linear-gradient(145deg, #2563eb 0%, #1d4ed8 35%, #0f172a 100%);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  box-shadow: 0 24px 80px rgba(29, 78, 216, 0.24);
+  isolation: isolate;
+}
+
+.mx-auto.grid.max-w-6xl > section:first-child * {
+  color: #fff;
+}
+
+.mx-auto.grid.max-w-6xl > section:first-child p.text-white\/70,
+.mx-auto.grid.max-w-6xl > section:first-child p.text-white\/80 {
+  color: rgba(255, 255, 255, 0.76) !important;
+}
+
+.mx-auto.grid.max-w-6xl > section:first-child > div:last-child > div {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.mx-auto.grid.max-w-6xl > section:first-child::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.22), transparent 18%),
+    radial-gradient(circle at 80% 18%, rgba(6, 182, 212, 0.16), transparent 18%),
+    radial-gradient(circle at 55% 70%, rgba(124, 58, 237, 0.2), transparent 22%);
+  filter: blur(22px);
+  opacity: 0.9;
+  animation: gpms-float 16s var(--ease) infinite;
+}
+
+.mx-auto.grid.max-w-6xl > section:first-child::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 28%, rgba(255, 255, 255, 0.04)),
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.16), transparent 20%);
+  opacity: 0.95;
+}
+
+.mx-auto.grid.max-w-6xl > section:first-child h2 {
+  max-width: 12ch;
+}
+
+.mx-auto.grid.max-w-6xl > section:first-child p.text-sm.uppercase {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.mx-auto.grid.max-w-6xl > section:first-child h2::after {
+  content: "";
+  display: block;
+  width: 4.5rem;
+  height: 0.22rem;
+  margin-top: 1.15rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.12));
+}
+
+.mx-auto.grid.max-w-6xl > section:first-child .mt-8.grid > div {
+  transition: transform var(--t-base), box-shadow var(--t-base), background-color var(--t-base);
+}
+
+.mx-auto.grid.max-w-6xl > section:first-child .mt-8.grid > div:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+}
+
+.mx-auto.grid.max-w-6xl > section:first-child .mt-8.grid > div:nth-child(1) {
+  animation: gpms-slide-up 420ms var(--ease) both;
+}
+
+.mx-auto.grid.max-w-6xl > section:first-child .mt-8.grid > div:nth-child(2) {
+  animation: gpms-slide-up 520ms var(--ease) both;
+}
+
+.mx-auto.grid.max-w-6xl > section:first-child .mt-8.grid > div:nth-child(3) {
+  animation: gpms-slide-up 620ms var(--ease) both;
+}
+
+.mx-auto.grid.max-w-6xl > section:last-child {
+  animation: gpms-zoom-in 420ms var(--ease) both;
+}
+
+.mx-auto.grid.max-w-6xl > section:last-child form {
+  margin-top: 1.5rem;
+}
+
+.mx-auto.grid.max-w-6xl > section:last-child a {
+  font-weight: 700;
+}
+
+.mx-auto.grid.max-w-6xl > section:last-child {
+  box-shadow: 0 30px 90px rgba(15, 23, 42, 0.18);
+}
+
+.mx-auto.grid.max-w-6xl > section:last-child h2 + p {
+  max-width: 32rem;
+}
+
+.mx-auto.grid.max-w-6xl > section:last-child form > div,
+.mx-auto.max-w-3xl form > div,
+.mx-auto.max-w-4xl form > div {
+  transition: transform var(--t-base), filter var(--t-base);
+}
+
+.mx-auto.grid.max-w-6xl > section:last-child form > div:hover,
+.mx-auto.max-w-3xl form > div:hover,
+.mx-auto.max-w-4xl form > div:hover {
+  transform: translateY(-1px);
+}
+
+.mx-auto.grid.max-w-6xl > section:last-child input,
+.mx-auto.grid.max-w-6xl > section:last-child select,
+.mx-auto.grid.max-w-6xl > section:last-child textarea,
+.mx-auto.max-w-3xl input,
+.mx-auto.max-w-3xl select,
+.mx-auto.max-w-3xl textarea,
+.mx-auto.max-w-4xl input,
+.mx-auto.max-w-4xl select,
+.mx-auto.max-w-4xl textarea {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.56),
+    0 8px 22px rgba(15, 23, 42, 0.04);
+}
+
+.mx-auto.grid.max-w-6xl > section:last-child button,
+.mx-auto.max-w-3xl button,
+.mx-auto.max-w-4xl button {
+  min-height: 3rem;
+  box-shadow: 0 18px 36px rgba(37, 99, 235, 0.18);
+}
+
+.mx-auto.grid.max-w-6xl > section:last-child p.mt-6,
+.mx-auto.max-w-3xl p.mt-6 {
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.mx-auto.max-w-3xl {
+  box-shadow: 0 28px 80px rgba(15, 23, 42, 0.16);
+}
+
+.mx-auto.max-w-3xl > h2 {
+  position: relative;
+}
+
+.mx-auto.max-w-3xl > h2::after {
+  content: "";
+  display: block;
+  width: 4rem;
+  height: 0.22rem;
+  margin-top: 1rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.85), rgba(124, 58, 237, 0.7), rgba(6, 182, 212, 0.72));
+  background-size: 220% 100%;
+  animation: gpms-gradient-shift 10s ease infinite;
+}
+
+.mx-auto.max-w-3xl form {
+  margin-top: 1.5rem;
+}
+
+.mx-auto.max-w-3xl form > div {
+  position: relative;
+}
+
+.mx-auto.max-w-3xl form > div::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 -0.3rem 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.12), transparent);
+  opacity: 0;
+  transition: opacity var(--t-base);
+}
+
+.mx-auto.max-w-3xl form > div:hover::before {
+  opacity: 1;
+}
+
+.mx-auto.max-w-3xl .md\:col-span-2 button {
+  min-width: 12rem;
+}
+
+.mx-auto.max-w-3xl p.mt-6 {
+  margin-top: 1.75rem;
+}
+
+/* ==========================================================================
+   Typography hierarchy for dashboard headings
+   ========================================================================== */
+
+h1,
+.text-4xl {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.02;
+}
+
+h2,
+.text-3xl {
+  font-size: clamp(1.5rem, 2.4vw, 2.3rem);
+  line-height: 1.08;
+}
+
+h3,
+.text-2xl {
+  font-size: clamp(1.2rem, 1.6vw, 1.65rem);
+  line-height: 1.12;
+}
+
+.font-bold,
+.font-semibold,
+.font-extrabold {
+  letter-spacing: -0.03em;
+}
+
+/* ==========================================================================
+   Inputs and forms
+   ========================================================================== */
+
+form {
+  color: var(--text);
+}
+
+label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.45rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  appearance: none;
+  border: 1px solid var(--border-strong);
+  border-radius: 1rem;
+  padding: 0.95rem 1rem;
+  color: var(--text);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.9)),
+    var(--surface-solid);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.56), var(--shadow-1);
+  transition:
+    border-color var(--t-base),
+    box-shadow var(--t-base),
+    transform var(--t-fast),
+    background-color var(--t-base);
+}
+
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(17, 24, 39, 0.9)),
+    var(--surface-solid);
+  border-color: rgba(51, 65, 85, 0.95);
+  color: var(--text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.78;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: rgba(37, 99, 235, 0.58);
+  box-shadow:
+    0 0 0 4px rgba(37, 99, 235, 0.16),
+    0 20px 40px rgba(37, 99, 235, 0.08),
+    var(--shadow-2);
+  transform: translateY(-1px);
+}
+
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+  accent-color: var(--primary);
+  box-shadow: none;
+}
+
+input[type="file"] {
+  padding: 0.8rem;
+}
+
+input[type="date"],
+input[type="datetime-local"],
+input[type="time"] {
+  color-scheme: light;
+}
+
+html.dark input[type="date"],
+html.dark input[type="datetime-local"],
+html.dark input[type="time"] {
+  color-scheme: dark;
+}
+
+.helptext,
+small.helptext,
+form p.helptext {
+  display: block;
+  margin-top: 0.45rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.errorlist,
+ul.errorlist {
+  margin: 0.4rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--danger);
+}
+
+.rounded-xl.bg-rose-50,
+.bg-rose-50,
+.bg-rose-100 {
+  background: linear-gradient(180deg, rgba(254, 242, 242, 0.92), rgba(254, 226, 226, 0.8));
+  border: 1px solid rgba(248, 113, 113, 0.24);
+}
+
+html.dark .rounded-xl.bg-rose-50,
+html.dark .bg-rose-50,
+html.dark .bg-rose-100 {
+  background: linear-gradient(180deg, rgba(69, 10, 10, 0.6), rgba(91, 18, 18, 0.48));
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+button,
+[type="button"],
+[type="submit"],
+.btn {
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform var(--t-fast),
+    box-shadow var(--t-base),
+    filter var(--t-base),
+    background-color var(--t-base),
+    border-color var(--t-base),
+    color var(--t-base),
+    opacity var(--t-base);
+}
+
+button:hover,
+[type="button"]:hover,
+[type="submit"]:hover,
+.btn:hover {
+  transform: translateY(-1px);
+  filter: saturate(1.05);
+}
+
+button:active,
+[type="button"]:active,
+[type="submit"]:active,
+.btn:active {
+  transform: translateY(0);
+}
+
+button:focus-visible,
+[type="button"]:focus-visible,
+[type="submit"]:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+}
+
+button.bg-brand-500,
+button.bg-brand-700,
+button.bg-slate-900,
+button.bg-emerald-500,
+button.bg-emerald-600,
+button.bg-rose-600,
+button.bg-white,
+button.bg-white\/90,
+button.bg-white\/80 {
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-3);
+}
+
+button.bg-brand-500::after,
+button.bg-brand-700::after,
+button.bg-slate-900::after,
+button.bg-emerald-500::after,
+button.bg-emerald-600::after,
+button.bg-rose-600::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.08), transparent 32%, rgba(255, 255, 255, 0.14));
+  opacity: 0;
+  transform: translateX(-18%);
+  transition: opacity var(--t-base), transform 700ms var(--ease);
+}
+
+button.bg-brand-500:hover::after,
+button.bg-brand-700:hover::after,
+button.bg-slate-900:hover::after,
+button.bg-emerald-500:hover::after,
+button.bg-emerald-600:hover::after,
+button.bg-rose-600:hover::after {
+  opacity: 1;
+  transform: translateX(18%);
+}
+
+.rounded-full,
+.rounded-xl,
+.rounded-2xl,
+.rounded-3xl,
+.rounded-\[2rem\] {
+  box-shadow: var(--shadow-1);
+}
+
+button:disabled,
+[type="button"]:disabled,
+[type="submit"]:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   Utility links and interactive text
+   ========================================================================== */
+
+a.font-semibold.text-brand-500,
+a.text-brand-500,
+.text-brand-500 {
+  color: var(--primary) !important;
+}
+
+a.text-brand-500:hover,
+a.font-semibold.text-brand-500:hover {
+  color: var(--primary-hover) !important;
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: var(--text);
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  backdrop-filter: var(--glass-blur);
+}
+
+thead th {
+  background: rgba(248, 250, 252, 0.96);
+}
+
+html.dark thead th {
+  background: rgba(15, 23, 42, 0.96);
+}
+
+th,
+td {
+  vertical-align: middle;
+}
+
+th {
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+td {
+  color: var(--text);
+}
+
+tbody tr {
+  transition:
+    background-color var(--t-fast),
+    transform var(--t-fast),
+    box-shadow var(--t-fast);
+}
+
+tbody tr:hover {
+  background: rgba(37, 99, 235, 0.04);
+}
+
+html.dark tbody tr:hover {
+  background: rgba(37, 99, 235, 0.12);
+}
+
+.overflow-x-auto {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.68) transparent;
+}
+
+/* ==========================================================================
+   Badges / status chips
+   ========================================================================== */
+
+.rounded-full.px-3.py-1,
+.rounded-full.px-3.py-1\.5 {
+  border: 1px solid rgba(255, 255, 255, 0.46);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+}
+
+.bg-emerald-50,
+.bg-emerald-100 {
+  background: linear-gradient(180deg, rgba(240, 253, 244, 0.94), rgba(220, 252, 231, 0.82));
+  border: 1px solid rgba(34, 197, 94, 0.22);
+}
+
+.bg-amber-50,
+.bg-amber-100 {
+  background: linear-gradient(180deg, rgba(255, 251, 235, 0.94), rgba(254, 243, 199, 0.82));
+  border: 1px solid rgba(245, 158, 11, 0.22);
+}
+
+.bg-rose-50,
+.bg-rose-100 {
+  background: linear-gradient(180deg, rgba(254, 242, 242, 0.94), rgba(254, 226, 226, 0.82));
+  border: 1px solid rgba(239, 68, 68, 0.22);
+}
+
+.bg-sky-50 {
+  background: linear-gradient(180deg, rgba(240, 249, 255, 0.94), rgba(224, 242, 254, 0.82));
+  border: 1px solid rgba(14, 165, 233, 0.22);
+}
+
+.dark .bg-emerald-950\/40,
+.dark .bg-amber-950\/40,
+.dark .bg-rose-950\/40,
+.dark .bg-sky-950\/40 {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.text-emerald-600,
+.text-emerald-700,
+.text-emerald-300 {
+  color: #16a34a !important;
+}
+
+.text-amber-500,
+.text-amber-700,
+.text-amber-300 {
+  color: #d97706 !important;
+}
+
+.text-rose-600,
+.text-rose-700,
+.text-rose-300 {
+  color: #e11d48 !important;
+}
+
+/* ==========================================================================
+   Alerts / messages
+   ========================================================================== */
+
+.mb-6.space-y-3 > div {
+  position: relative;
+  overflow: hidden;
+  animation: gpms-slide-up 360ms var(--ease) both;
+}
+
+.mb-6.space-y-3 > div::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.3), transparent 24%, transparent 76%, rgba(255, 255, 255, 0.18)),
+    radial-gradient(circle at 0% 50%, rgba(255, 255, 255, 0.24), transparent 20%);
+  opacity: 0.55;
+}
+
+/* ==========================================================================
+   Navigation / controls
+   ========================================================================== */
+
+.flex.justify-end.p-6 button,
+#theme-toggle,
+#theme-toggle-auth {
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 250, 252, 0.82)),
+    var(--surface);
+  box-shadow: var(--shadow-2);
+}
+
+html.dark .flex.justify-end.p-6 button,
+html.dark #theme-toggle,
+html.dark #theme-toggle-auth {
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(17, 24, 39, 0.84)),
+    var(--surface);
+}
+
+.flex.justify-end.p-6 button:hover,
+#theme-toggle:hover,
+#theme-toggle-auth:hover {
+  border-color: rgba(37, 99, 235, 0.2);
+  box-shadow: var(--shadow-glow);
+}
+
+/* ==========================================================================
+   Dashboard cards
+   ========================================================================== */
+
+.grid.gap-4 > .rounded-3xl {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(248, 250, 252, 0.8)),
+    var(--surface);
+  box-shadow: var(--shadow-3);
+  transition:
+    transform var(--t-base),
+    box-shadow var(--t-base),
+    border-color var(--t-base);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.grid.gap-4 > .rounded-3xl:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-4);
+  border-color: rgba(37, 99, 235, 0.16);
+}
+
+.grid.gap-4 > .rounded-3xl p.text-3xl {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.05em;
+}
+
+.grid.gap-4 > .rounded-3xl .text-sm {
+  color: var(--text-muted);
+}
+
+.grid.gap-4 > .rounded-3xl:nth-child(1) {
+  background:
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.12), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.82));
+}
+
+.grid.gap-4 > .rounded-3xl:nth-child(2) {
+  background:
+    radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.82));
+}
+
+.grid.gap-4 > .rounded-3xl:nth-child(3) {
+  background:
+    radial-gradient(circle at top right, rgba(245, 158, 11, 0.14), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.82));
+}
+
+.grid.gap-4 > .rounded-3xl:nth-child(4) {
+  background:
+    radial-gradient(circle at top right, rgba(239, 68, 68, 0.12), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.82));
+}
+
+.grid.gap-4 > .rounded-3xl::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.14), transparent 30%, transparent 70%, rgba(255, 255, 255, 0.08)),
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.22), transparent 18%);
+  opacity: 0.8;
+}
+
+.grid.gap-4 > .rounded-3xl::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 88% 18%, rgba(255, 255, 255, 0.18), transparent 12%),
+    radial-gradient(circle at 92% 82%, rgba(37, 99, 235, 0.08), transparent 18%);
+  opacity: 0.25;
+  mix-blend-mode: screen;
+}
+
+html.dark .grid.gap-4 > .rounded-3xl {
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(17, 24, 39, 0.8)),
+    var(--surface);
+}
+
+html.dark .grid.gap-4 > .rounded-3xl::after {
+  background:
+    radial-gradient(circle at 88% 18%, rgba(255, 255, 255, 0.1), transparent 12%),
+    radial-gradient(circle at 92% 82%, rgba(37, 99, 235, 0.06), transparent 18%);
+  opacity: 0.18;
+}
+
+/* ==========================================================================
+   Analytics / hero emphasis
+   ========================================================================== */
+
+.space-y-8 > div:first-child,
+.space-y-8 > section:first-child {
+  position: relative;
+}
+
+.space-y-8 > div:first-child::after,
+.space-y-8 > section:first-child::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.28), rgba(124, 58, 237, 0.28), transparent);
+}
+
+.space-y-8 > div:first-child {
+  padding-bottom: 0.25rem;
+}
+
+.space-y-8 > div:first-child p.text-sm.uppercase {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.14);
+}
+
+.space-y-8 > div:first-child h2 {
+  max-width: 16ch;
+}
+
+/* ==========================================================================
+   Tables inside cards
+   ========================================================================== */
+
+section table {
+  border-radius: inherit;
+}
+
+section table thead th:first-child,
+section table tbody td:first-child {
+  padding-left: 1rem;
+}
+
+section table thead th:last-child,
+section table tbody td:last-child {
+  padding-right: 1rem;
+}
+
+section table thead th {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+section table tbody td {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+section table tbody tr {
+  border-bottom: 1px solid var(--border);
+}
+
+section table tbody tr:last-child {
+  border-bottom: none;
+}
+
+tbody tr:hover td {
+  background: rgba(37, 99, 235, 0.035);
+}
+
+html.dark tbody tr:hover td {
+  background: rgba(37, 99, 235, 0.09);
+}
+
+td[colspan] {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  color: var(--text-muted);
+}
+
+tbody tr td:first-child {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+tbody tr td:last-child {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+section .overflow-x-auto {
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+html.dark section .overflow-x-auto {
+  background: rgba(15, 23, 42, 0.35);
+}
+
+.space-y-8 > section.rounded-\[2rem\],
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section,
+.space-y-8 > section.rounded-\[2rem\] {
+  box-shadow: var(--shadow-4);
+}
+
+.space-y-8 > section.rounded-\[2rem\] > form,
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section > form {
+  gap: 1.25rem;
+}
+
+.space-y-8 > section.rounded-\[2rem\] > form label,
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section > form label {
+  color: var(--text-muted);
+}
+
+.space-y-8 > section.rounded-\[2rem\] > form input,
+.space-y-8 > section.rounded-\[2rem\] > form select,
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section > form input,
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section > form select {
+  min-height: 3.15rem;
+}
+
+.space-y-8 > section.rounded-\[2rem\] > form button,
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section > form button {
+  min-height: 3.15rem;
+}
+
+.space-y-8 > section.rounded-\[2rem\] > .mb-4.flex.items-center.justify-between,
+.space-y-8 > section.rounded-\[2rem\] > h3 {
+  position: relative;
+}
+
+.space-y-8 > section.rounded-\[2rem\] > .mb-4.flex.items-center.justify-between::after,
+.space-y-8 > section.rounded-\[2rem\] > h3::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -0.85rem 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.18), transparent);
+}
+
+.space-y-8 > section.rounded-\[2rem\] > .mb-4.flex.items-center.justify-between {
+  padding-bottom: 0.5rem;
+}
+
+.space-y-8 > section.rounded-\[2rem\] .text-sm.font-semibold.text-brand-500 {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.space-y-8 > section.rounded-\[2rem\] .text-sm.font-semibold.text-brand-500:hover {
+  transform: translateX(2px);
+}
+
+/* ==========================================================================
+   Pagination
+   ========================================================================== */
+
+.mt-6.flex.items-center.justify-between a,
+.mt-6.flex.items-center.justify-between span,
+.flex.gap-2 a {
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(248, 250, 252, 0.8)),
+    var(--surface);
+  box-shadow: var(--shadow-1);
+}
+
+html.dark .mt-6.flex.items-center.justify-between a,
+html.dark .mt-6.flex.items-center.justify-between span,
+html.dark .flex.gap-2 a {
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.86), rgba(17, 24, 39, 0.8)),
+    var(--surface);
+  border-color: rgba(51, 65, 85, 0.95);
+}
+
+.mt-6.flex.items-center.justify-between {
+  gap: 1rem;
+}
+
+.mt-6.flex.items-center.justify-between a,
+.flex.gap-2 a {
+  border-radius: 999px;
+  padding-inline: 1rem;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Scrollbars
+   ========================================================================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(148, 163, 184, 0.66), rgba(100, 116, 139, 0.9));
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.82), rgba(124, 58, 237, 0.92));
+}
+
+/* ==========================================================================
+   Micro-interactions
+   ========================================================================== */
+
+.transition-colors,
+.transition,
+.duration-300,
+.duration-200 {
+  transition-timing-function: var(--ease) !important;
+}
+
+.hover\:bg-slate-100:hover,
+.hover\:bg-slate-800:hover {
+  transition: background-color var(--t-base), transform var(--t-base), box-shadow var(--t-base);
+}
+
+/* ==========================================================================
+   Lucide icons ready
+   ========================================================================== */
+
+svg.lucide,
+svg[class*="lucide"],
+svg {
+  flex-shrink: 0;
+  stroke-width: 1.85;
+  shape-rendering: geometricPrecision;
+}
+
+.icon,
+[data-lucide] {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+/* ==========================================================================
+   Utility classes
+   ========================================================================== */
+
+.gpms-container {
+  width: min(100% - 2rem, var(--container));
+  margin-inline: auto;
+}
+
+.gpms-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.gpms-flex {
+  display: flex;
+  gap: 1rem;
+}
+
+.gpms-center {
+  display: grid;
+  place-items: center;
+}
+
+.gpms-muted {
+  color: var(--text-muted);
+}
+
+.gpms-border {
+  border: 1px solid var(--border);
+}
+
+.gpms-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+.gpms-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: var(--shadow-1);
+}
+
+html.dark .gpms-pill {
+  background: rgba(15, 23, 42, 0.76);
+}
+
+.gpms-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-3);
+  backdrop-filter: var(--glass-blur);
+  overflow: hidden;
+}
+
+.gpms-card--gradient {
+  background:
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.14), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(124, 58, 237, 0.12), transparent 26%),
+    var(--surface);
+}
+
+.gpms-card--accent {
+  background:
+    radial-gradient(circle at top right, rgba(6, 182, 212, 0.14), transparent 26%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(248, 250, 252, 0.76));
+}
+
+/* ==========================================================================
+   Floating / gradient borders
+   ========================================================================== */
+
+.gpms-border-gradient {
+  position: relative;
+}
+
+.gpms-border-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(124, 58, 237, 0.9), rgba(6, 182, 212, 0.9));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+.gpms-border-gradient::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.12), transparent 26%, rgba(255, 255, 255, 0.08));
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   Dark theme refinements
+   ========================================================================== */
+
+.dark .border-slate-200 {
+  border-color: rgba(31, 41, 55, 0.94) !important;
+}
+
+.dark .border-slate-100 {
+  border-color: rgba(30, 41, 59, 0.92) !important;
+}
+
+.dark .bg-slate-100 {
+  background: rgba(15, 23, 42, 0.88) !important;
+}
+
+.dark .bg-slate-900 {
+  background: rgba(15, 23, 42, 0.98) !important;
+}
+
+.dark .bg-slate-950 {
+  background: rgba(2, 6, 23, 0.98) !important;
+}
+
+.dark .bg-white {
+  background: rgba(15, 23, 42, 0.84) !important;
+}
+
+.dark .bg-white\/90,
+.dark .bg-white\/80 {
+  background: rgba(15, 23, 42, 0.82) !important;
+}
+
+.dark .shadow-sm,
+.dark .shadow-md,
+.dark .shadow-lg {
+  box-shadow: var(--shadow-3) !important;
+}
+
+.dark .text-slate-500,
+.dark .text-slate-400,
+.dark .text-slate-300 {
+  color: var(--text-muted) !important;
+}
+
+/* ==========================================================================
+   Responsive structure
+   ========================================================================== */
+
+@media (max-width: 1280px) {
+  .grid {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  body {
+    background-attachment: fixed;
+  }
+
+  aside {
+    box-shadow: var(--shadow-2);
+  }
+
+  .mx-auto.grid.max-w-6xl {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  body::before,
+  body::after {
+    opacity: 0.22;
+    filter: blur(42px);
+  }
+
+  main > .p-4,
+  main > .p-6,
+  main > .p-8 {
+    padding-inline: 1rem;
+  }
+
+  section,
+  .rounded-\[2rem\],
+  .rounded-3xl,
+  .rounded-2xl {
+    border-radius: 1.5rem;
+  }
+
+  .grid.gap-4 > .rounded-3xl {
+    padding: 1.25rem !important;
+  }
+
+  table {
+    font-size: 0.875rem;
+  }
+
+  .text-4xl {
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
+  }
+}
+
+@media (max-width: 640px) {
+  label {
+    font-size: 0.875rem;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 0.85rem 0.92rem;
+    border-radius: 0.9rem;
+  }
+
+  .px-6,
+  .px-8 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .py-6,
+  .py-8 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .text-3xl {
+    font-size: 1.65rem;
+  }
+
+  .mx-auto.grid.max-w-6xl > section:first-child {
+    min-height: 20rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .gpms-container {
+    width: min(100% - 4rem, 1600px);
+  }
+}
+
+@media (min-width: 1920px) {
+  body {
+    font-size: 16px;
+  }
+
+  .gpms-container {
+    width: min(100% - 5rem, 1760px);
+  }
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@keyframes gpms-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  25% {
+    transform: translate3d(8px, -10px, 0) scale(1.03);
+  }
+  50% {
+    transform: translate3d(-6px, 6px, 0) scale(0.98);
+  }
+  75% {
+    transform: translate3d(10px, 4px, 0) scale(1.02);
+  }
+}
+
+@keyframes gpms-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gpms-slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gpms-slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gpms-zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gpms-glow {
+  0%,
+  100% {
+    box-shadow: var(--shadow-3);
+  }
+  50% {
+    box-shadow: var(--shadow-glow);
+  }
+}
+
+@keyframes gpms-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes gpms-gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gpms-page-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes gpms-view-old {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.99);
+  }
+}
+
+@keyframes gpms-view-new {
+  from {
+    opacity: 0;
+    transform: scale(1.01);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+section[class*="bg-gradient"],
+.bg-brand-500,
+.bg-brand-700,
+.gpms-card--gradient {
+  background-size: 220% 220%;
+  animation: gpms-gradient-shift 14s ease infinite;
+}
+
+/* ==========================================================================
+   Reduced motion
+   ========================================================================== */
+
+:focus-visible {
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   Print
+   ========================================================================== */
+
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  aside,
+  button,
+  nav,
+  #theme-toggle,
+  #theme-toggle-auth,
+  .no-print {
+    display: none !important;
+  }
+
+  section,
+  div[class*="shadow-panel"],
+  .rounded-\[2rem\],
+  .rounded-2xl,
+  .rounded-3xl {
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    background: #fff !important;
+    border-color: #ddd !important;
+  }
+}
+
+/* ==========================================================================
+   Extra polish layers
+   ========================================================================== */
+
+.p-4.md\:p-8,
+.p-4,
+.p-6,
+.p-8 {
+  animation: gpms-slide-up 420ms var(--ease) both;
+}
+
+.mx-auto.grid.max-w-6xl > section:last-child,
+.mx-auto.max-w-3xl {
+  animation: gpms-zoom-in 420ms var(--ease) both;
+}
+
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section {
+  animation: gpms-slide-up 420ms var(--ease) both;
+}
+
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section:first-child {
+  min-height: 100%;
+}
+
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section:first-child form {
+  margin-top: 1.75rem;
+}
+
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section:first-child input {
+  min-height: 3.25rem;
+  font-size: 1rem;
+}
+
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section:first-child .mt-8.rounded-3xl {
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 26%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(248, 250, 252, 0.82));
+  box-shadow: var(--shadow-3);
+}
+
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section:first-child {
+  isolation: isolate;
+}
+
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section:first-child::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 30%, transparent 70%, rgba(255, 255, 255, 0.06)),
+    radial-gradient(circle at 15% 12%, rgba(37, 99, 235, 0.12), transparent 18%),
+    radial-gradient(circle at 85% 14%, rgba(6, 182, 212, 0.1), transparent 16%);
+  opacity: 0.9;
+}
+
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section:first-child::after {
+  content: "";
+  position: absolute;
+  inset: 1rem;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+html.dark .grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section:first-child .mt-8.rounded-3xl {
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 26%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(17, 24, 39, 0.82));
+}
+
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section:first-child .mt-6.flex.flex-wrap.gap-3 button {
+  min-width: 9rem;
+}
+
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section:first-child .mt-6.flex.flex-wrap.gap-3 form {
+  margin: 0;
+}
+
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section:last-child .space-y-4 > div {
+  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+}
+
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section:last-child .space-y-4 > div:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+  border-color: rgba(37, 99, 235, 0.14);
+}
+
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section:last-child .space-y-4 > div p.font-semibold {
+  letter-spacing: -0.02em;
+}
+
+.grid.gap-8.xl\:grid-cols-\[1\.1fr\,0\.9fr\] > section:last-child .space-y-4 > div p.text-xs {
+  color: var(--text-faint);
+}
+
+.mx-auto.max-w-4xl {
+  animation: gpms-zoom-in 420ms var(--ease) both;
+}
+
+.mx-auto.max-w-4xl form {
+  margin-top: 1.5rem;
+}
+
+.mx-auto.max-w-4xl input,
+.mx-auto.max-w-4xl select,
+.mx-auto.max-w-4xl textarea {
+  min-height: 3rem;
+}
+
+.mx-auto.max-w-4xl button {
+  min-width: 11rem;
+}
+
+.mx-auto.max-w-4xl > p.text-sm.uppercase {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.14);
+}
+
+.mx-auto.max-w-4xl > h2 {
+  max-width: 18ch;
+}
+
+.mx-auto.max-w-4xl .mt-8.grid,
+.mx-auto.max-w-4xl form {
+  position: relative;
+}
+
+.mx-auto.max-w-4xl .mt-8.grid::before {
+  content: "";
+  position: absolute;
+  inset: -0.25rem 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.16), transparent);
+}
+
+.space-y-8 > section.rounded-\[2rem\] {
+  animation: gpms-slide-up 420ms var(--ease) both;
+}
+
+.space-y-8 > section.rounded-\[2rem\] + section.rounded-\[2rem\] {
+  animation-delay: 80ms;
+}
+
+.space-y-8 > section.rounded-\[2rem\] + section.rounded-\[2rem\] + section.rounded-\[2rem\] {
+  animation-delay: 120ms;
+}
+
+.flex.justify-end.p-6 {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: var(--glass-blur);
+}
+
+html.dark .flex.justify-end.p-6 {
+  background: linear-gradient(180deg, rgba(5, 8, 20, 0.86), rgba(5, 8, 20, 0));
+}
+
+/* Stronger focus for keyboard navigation */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 0;
+}
+
+button:focus-visible,
+a:focus-visible {
+  box-shadow:
+    0 0 0 4px rgba(37, 99, 235, 0.22),
+    0 0 0 1px rgba(37, 99, 235, 0.12),
+    var(--shadow-2);
+}
+
+/* Smooth hover lift for all main cards and panels */
+
+section:hover,
+div[class*="shadow-panel"]:hover,
+.rounded-\[2rem\]:hover,
+.rounded-3xl:hover,
+.rounded-2xl:hover {
+  transform: translateY(-2px);
+  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+}
+
+/* Subtle glass sheen on white cards */
+
+section[class*="bg-white"]::after,
+div[class*="bg-white"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.24), transparent 20%),
+    radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.14), transparent 18%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 32%, rgba(255, 255, 255, 0.04));
+  opacity: 0.8;
+}
+
+/* Make the top right auth toggle and main content feel like a dashboard shell */
+
+main > .flex.justify-end {
+  padding-bottom: 0.35rem;
+}
+
+main > .p-4::before,
+main > .p-6::before,
+main > .p-8::before {
+  content: "";
+  position: absolute;
+  inset: -1rem;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.08), transparent 22%),
+    radial-gradient(circle at 100% 0%, rgba(124, 58, 237, 0.06), transparent 20%);
+  filter: blur(24px);
+  opacity: 0.55;
+  z-index: -1;
+}
+
+/* Tables and forms inherit a refined border rhythm */
+
+table tr td,
+table tr th {
+  border-color: var(--border);
+}
+
+/* Mobile sidebar still feels premium */
+
+@media (max-width: 767px) {
+  aside {
+    border-radius: 0 0 1.5rem 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  nav {
+    padding-bottom: 1rem;
+  }
+}
+
+/* ==========================================================================
+   Futuristic Glass Dashboard Overrides
+   ========================================================================== */
+
+:root {
+  --neo-bg: #050816;
+  --neo-panel: rgba(12, 18, 34, 0.64);
+  --neo-panel-strong: rgba(15, 23, 42, 0.78);
+  --neo-line: rgba(255, 255, 255, 0.12);
+  --neo-line-strong: rgba(255, 255, 255, 0.18);
+  --neo-text: #e9eefc;
+  --neo-muted: #9aa8c7;
+  --neo-blue: #5b8cff;
+  --neo-purple: #a855f7;
+  --neo-pink: #ff4fd8;
+  --neo-cyan: #22d3ee;
+  --neo-green: #22c55e;
+  --neo-amber: #f59e0b;
+  --neo-red: #ff4d6d;
+  --neo-shadow: 0 28px 80px rgba(0, 0, 0, 0.4);
+  --neo-shadow-soft: 0 16px 40px rgba(3, 7, 18, 0.28);
+  --neo-radius: 28px;
+}
+
+html {
+  background:
+    radial-gradient(circle at 14% 20%, rgba(91, 140, 255, 0.18), transparent 16%),
+    radial-gradient(circle at 84% 10%, rgba(168, 85, 247, 0.18), transparent 14%),
+    radial-gradient(circle at 76% 78%, rgba(255, 79, 216, 0.14), transparent 18%),
+    radial-gradient(circle at 20% 82%, rgba(34, 211, 238, 0.14), transparent 16%),
+    linear-gradient(180deg, #040714 0%, #070b1d 38%, #050816 100%);
+}
+
+body {
+  background:
+    radial-gradient(circle at 15% 12%, rgba(91, 140, 255, 0.24), transparent 14%),
+    radial-gradient(circle at 82% 16%, rgba(255, 79, 216, 0.18), transparent 12%),
+    radial-gradient(circle at 60% 82%, rgba(34, 211, 238, 0.16), transparent 14%),
+    linear-gradient(180deg, rgba(4, 7, 20, 0.96), rgba(5, 8, 22, 0.98));
+  color: var(--neo-text);
+}
+
+body::before,
+body::after {
+  opacity: 0.72;
+  filter: blur(38px);
+}
+
+body::before {
+  width: 28rem;
+  height: 28rem;
+  background: radial-gradient(circle, rgba(91, 140, 255, 0.22), transparent 68%);
+}
+
+body::after {
+  width: 30rem;
+  height: 30rem;
+  background: radial-gradient(circle, rgba(255, 79, 216, 0.18), transparent 68%);
+}
+
+body::after {
+  animation: gpms-float 20s var(--ease) infinite reverse;
+}
+
+main::before {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.18), transparent 70%);
+}
+
+main::after {
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.14), transparent 70%);
+}
+
+.text-slate-900,
+.text-slate-800,
+.text-slate-700,
+.text-slate-600,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
+  color: var(--neo-text) !important;
+}
+
+.text-slate-500,
+.text-slate-400,
+small,
+.text-sm {
+  color: var(--neo-muted) !important;
+}
+
+aside {
+  margin: 1rem;
+  width: calc(18rem + 0.5rem);
+  border-radius: 32px;
+  border: 1px solid var(--neo-line-strong);
+  background:
+    linear-gradient(180deg, rgba(14, 20, 40, 0.78), rgba(7, 12, 26, 0.68)),
+    rgba(8, 12, 28, 0.72);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    var(--neo-shadow);
+  backdrop-filter: blur(20px) saturate(140%);
+}
+
+aside::before {
+  background:
+    radial-gradient(circle at 15% 15%, rgba(91, 140, 255, 0.18), transparent 18%),
+    radial-gradient(circle at 85% 14%, rgba(168, 85, 247, 0.14), transparent 16%),
+    radial-gradient(circle at 55% 82%, rgba(255, 79, 216, 0.08), transparent 18%);
+}
+
+aside > div:first-child {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+aside > div:first-child h1 {
+  color: #f8fbff !important;
+}
+
+aside > .px-6 > div {
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, rgba(91, 140, 255, 0.24), rgba(168, 85, 247, 0.18) 48%, rgba(34, 211, 238, 0.12)),
+    rgba(12, 18, 34, 0.7) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+    0 24px 50px rgba(0, 0, 0, 0.24);
+}
+
+nav a {
+  border-radius: 22px !important;
+  padding: 0.95rem 1rem !important;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid transparent;
+  color: var(--neo-text) !important;
+}
+
+nav a:hover,
+nav a:focus-visible {
+  background:
+    linear-gradient(135deg, rgba(91, 140, 255, 0.18), rgba(168, 85, 247, 0.12)),
+    rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 0 0 1px rgba(91, 140, 255, 0.14),
+    0 18px 34px rgba(91, 140, 255, 0.14);
+  transform: translateX(4px);
+}
+
+nav a[href*="dashboard"] {
+  background:
+    linear-gradient(135deg, rgba(91, 140, 255, 0.32), rgba(168, 85, 247, 0.18)),
+    rgba(255, 255, 255, 0.04);
+  box-shadow:
+    0 0 0 1px rgba(91, 140, 255, 0.28),
+    0 18px 44px rgba(91, 140, 255, 0.18);
+}
+
+nav form button {
+  background: linear-gradient(135deg, rgba(255, 79, 109, 0.18), rgba(255, 79, 216, 0.12)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #ffeef3 !important;
+}
+
+nav form button:hover {
+  box-shadow:
+    0 0 0 1px rgba(255, 79, 109, 0.2),
+    0 18px 34px rgba(255, 79, 109, 0.18) !important;
+}
+
+main > .p-4,
+main > .p-6,
+main > .p-8 {
+  padding: 1.25rem;
+}
+
+section,
+div[class*="shadow-panel"],
+.rounded-\[2rem\],
+.rounded-3xl,
+.rounded-2xl,
+.rounded-xl,
+.rounded-lg,
+.gpms-card {
+  border-radius: var(--neo-radius) !important;
+  border: 1px solid var(--neo-line) !important;
+  background:
+    linear-gradient(180deg, rgba(16, 23, 44, 0.82), rgba(10, 15, 32, 0.72)),
+    var(--neo-panel) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    var(--neo-shadow-soft) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+}
+
+section::before,
+div[class*="shadow-panel"]::before,
+.rounded-\[2rem\]::before,
+.rounded-3xl::before,
+.rounded-2xl::before,
+.rounded-xl::before,
+.gpms-card::before {
+  opacity: 0.9;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 28%, rgba(255, 255, 255, 0.05)),
+    linear-gradient(135deg, rgba(91, 140, 255, 0.24), rgba(168, 85, 247, 0.16), rgba(255, 79, 216, 0.1));
+}
+
+section::after,
+div[class*="shadow-panel"]::after,
+.rounded-\[2rem\]::after,
+.rounded-3xl::after,
+.rounded-2xl::after,
+.rounded-xl::after,
+.gpms-card::after {
+  opacity: 0.55;
+}
+
+.grid.gap-4 > .rounded-3xl {
+  overflow: hidden;
+  border-radius: 30px !important;
+  background:
+    linear-gradient(180deg, rgba(18, 25, 49, 0.82), rgba(9, 13, 28, 0.78)),
+    rgba(14, 20, 40, 0.7) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+    0 24px 50px rgba(0, 0, 0, 0.28) !important;
+}
+
+.grid.gap-4 > .rounded-3xl:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 0 0 1px rgba(91, 140, 255, 0.22) inset,
+    0 26px 60px rgba(91, 140, 255, 0.16) !important;
+}
+
+.grid.gap-4 > .rounded-3xl::before {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(91, 140, 255, 0.14), transparent 18%),
+    radial-gradient(circle at 82% 16%, rgba(255, 79, 216, 0.12), transparent 16%),
+    radial-gradient(circle at 50% 82%, rgba(34, 211, 238, 0.08), transparent 18%);
+}
+
+.grid.gap-4 > .rounded-3xl::after {
+  opacity: 0.1;
+  mix-blend-mode: screen;
+}
+
+button,
+[type="button"],
+[type="submit"],
+.gpms-primary-action,
+.gpms-secondary-action,
+.gpms-iconbutton,
+.gpms-logout,
+a.rounded-xl,
+a.rounded-3xl,
+a.rounded-2xl {
+  border-radius: 999px !important;
+  transition: transform 300ms var(--ease), box-shadow 300ms var(--ease), filter 300ms var(--ease), background 300ms var(--ease);
+}
+
+button.bg-brand-500,
+button.bg-brand-700,
+button.bg-slate-900,
+.gpms-primary-action,
+.gpms-secondary-action,
+button.bg-emerald-500,
+button.bg-emerald-600,
+button.bg-rose-600 {
+  background-size: 200% 200%;
+  background-image: linear-gradient(135deg, var(--neo-blue), var(--neo-purple), var(--neo-cyan)) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+    0 18px 44px rgba(91, 140, 255, 0.18) !important;
+}
+
+button:hover,
+[type="button"]:hover,
+[type="submit"]:hover,
+.gpms-primary-action:hover,
+.gpms-secondary-action:hover,
+.gpms-iconbutton:hover,
+.gpms-logout:hover {
+  transform: translateY(-2px) scale(1.01);
+}
+
+input,
+select,
+textarea {
+  border-radius: 999px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background:
+    linear-gradient(180deg, rgba(10, 15, 32, 0.88), rgba(7, 11, 24, 0.78)),
+    rgba(255, 255, 255, 0.04) !important;
+  color: var(--neo-text) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+    0 10px 24px rgba(0, 0, 0, 0.18) !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: rgba(91, 140, 255, 0.38) !important;
+  box-shadow:
+    0 0 0 1px rgba(91, 140, 255, 0.24),
+    0 0 0 4px rgba(91, 140, 255, 0.12),
+    0 18px 40px rgba(91, 140, 255, 0.12) !important;
+}
+
+label {
+  color: #d7e0f8 !important;
+  font-weight: 700;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0 0.7rem;
+}
+
+thead th {
+  color: #9aa8c7 !important;
+  background: transparent !important;
+}
+
+tbody tr {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+tbody tr:hover {
+  background: rgba(91, 140, 255, 0.08);
+}
+
+tbody td {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+tbody tr td:first-child {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+tbody tr td:last-child {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.rounded-full.px-3.py-1,
+.rounded-full.px-3.py-1\.5 {
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 14px 28px rgba(0, 0, 0, 0.14) !important;
+}
+
+.bg-emerald-100,
+.bg-emerald-50 {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 211, 238, 0.12)) !important;
+}
+
+.bg-amber-100,
+.bg-amber-50 {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(255, 79, 216, 0.08)) !important;
+}
+
+.bg-rose-100,
+.bg-rose-50 {
+  background: linear-gradient(135deg, rgba(255, 77, 109, 0.2), rgba(255, 79, 216, 0.1)) !important;
+}
+
+.bg-sky-50 {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.18), rgba(91, 140, 255, 0.12)) !important;
+}
+
+.mb-6.space-y-3 > div {
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(13, 18, 34, 0.72);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.2);
+}
+
+.mb-6.space-y-3 > div::before {
+  opacity: 0.35;
+}
+
+.flex.justify-end.p-6 {
+  padding: 1rem !important;
+}
+
+main > .p-4::before,
+main > .p-6::before,
+main > .p-8::before {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(91, 140, 255, 0.1), transparent 22%),
+    radial-gradient(circle at 80% 0%, rgba(255, 79, 216, 0.08), transparent 18%);
+}
+
+.gpms-shell,
+.gpms-card,
+section,
+div[class*="shadow-panel"] {
+  position: relative;
+  isolation: isolate;
+}
+
+.gpms-shell::after,
+.gpms-card::after,
+section::after,
+div[class*="shadow-panel"]::after {
+  background:
+    radial-gradient(circle at 25% 20%, rgba(91, 140, 255, 0.12), transparent 18%),
+    radial-gradient(circle at 78% 18%, rgba(255, 79, 216, 0.08), transparent 16%),
+    radial-gradient(circle at 55% 78%, rgba(34, 211, 238, 0.08), transparent 16%);
+}
+
+progress,
+.progress {
+  appearance: none;
+  overflow: hidden;
+  border-radius: 999px;
+  height: 0.8rem;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+progress::-webkit-progress-bar,
+.progress::-webkit-progress-bar {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+
+progress::-webkit-progress-value,
+.progress__bar {
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--neo-blue), var(--neo-purple), var(--neo-cyan));
+}
+
+@keyframes neoPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(91, 140, 255, 0.16),
+      0 18px 40px rgba(91, 140, 255, 0.14);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(255, 79, 216, 0.2),
+      0 24px 50px rgba(255, 79, 216, 0.18);
+  }
+}
+
+@keyframes neoFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.gpms-primary-action,
+.gpms-secondary-action,
+.gpms-iconbutton,
+.gpms-logout,
+button.bg-brand-500,
+button.bg-brand-700,
+button.bg-slate-900 {
+  animation: neoPulse 6s ease-in-out infinite;
+}
+
+.grid.gap-4 > .rounded-3xl:hover,
+section:hover,
+div[class*="shadow-panel"]:hover,
+.rounded-\[2rem\]:hover,
+.rounded-3xl:hover,
+.rounded-2xl:hover {
+  animation: neoFloat 4s ease-in-out infinite;
+}
+
+@media (max-width: 1024px) {
+  aside {
+    margin: 0.75rem;
+    width: auto;
+    border-radius: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  aside {
+    margin: 0.5rem;
+    border-radius: 24px;
+  }
+
+  nav a,
+  button,
+  input,
+  select,
+  textarea,
+  .gpms-primary-action,
+  .gpms-secondary-action {
+    border-radius: 999px !important;
+  }
+
+  .grid.gap-4 > .rounded-3xl {
+    border-radius: 24px !important;
+  }
+}
+
+/* ======================================================================
+   Final GPMS Futuristic Dashboard Layer
+   ====================================================================== */
+
+:root {
+  --gpms-bg: #0b1020;
+  --gpms-bg-2: #0f1730;
+  --gpms-surface: rgba(255, 255, 255, 0.08);
+  --gpms-surface-strong: rgba(255, 255, 255, 0.12);
+  --gpms-border: rgba(255, 255, 255, 0.12);
+  --gpms-border-strong: rgba(255, 255, 255, 0.2);
+  --gpms-text: #ffffff;
+  --gpms-text-muted: #94a3b8;
+  --gpms-primary: #7c3aed;
+  --gpms-secondary: #3b82f6;
+  --gpms-accent: #06b6d4;
+  --gpms-success: #22c55e;
+  --gpms-warning: #f59e0b;
+  --gpms-danger: #ef4444;
+  --gpms-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  --gpms-glow: 0 0 0 1px rgba(124, 58, 237, 0.18), 0 24px 48px rgba(59, 130, 246, 0.16);
+  --gpms-radius: 24px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  font-family: "Inter", "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(124, 58, 237, 0.22), transparent 22%),
+    radial-gradient(circle at 82% 12%, rgba(59, 130, 246, 0.2), transparent 18%),
+    radial-gradient(circle at 80% 82%, rgba(6, 182, 212, 0.12), transparent 20%),
+    linear-gradient(180deg, #0b1020 0%, #090d1a 100%);
+  color: var(--gpms-text);
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto;
+  z-index: -2;
+  pointer-events: none;
+  filter: blur(48px);
+  opacity: 0.65;
+}
+
+body::before {
+  top: 12%;
+  left: -6%;
+  width: 22rem;
+  height: 22rem;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.24), transparent 70%);
+}
+
+body::after {
+  right: -8%;
+  bottom: 8%;
+  width: 24rem;
+  height: 24rem;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.22), transparent 68%);
+}
+
+::selection {
+  background: rgba(124, 58, 237, 0.35);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(124, 58, 237, 0.65), rgba(59, 130, 246, 0.65));
+  border-radius: 999px;
+  border: 2px solid rgba(11, 16, 32, 0.9);
+}
+
+main {
+  min-width: 0;
+}
+
+aside {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: linear-gradient(180deg, rgba(12, 18, 38, 0.94), rgba(9, 13, 28, 0.92));
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.04), 0 30px 80px rgba(0, 0, 0, 0.2);
+}
+
+aside nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.gpms-sidebar {
+  position: relative;
+  isolation: isolate;
+}
+
+.gpms-sidebar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(124, 58, 237, 0.15), transparent 20%),
+    radial-gradient(circle at 80% 25%, rgba(59, 130, 246, 0.12), transparent 18%),
+    radial-gradient(circle at 55% 85%, rgba(6, 182, 212, 0.1), transparent 18%);
+  z-index: -1;
+}
+
+.gpms-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1rem 1.25rem;
+  margin: 1rem 1rem 0;
+  border-radius: 28px;
+  background: rgba(14, 20, 40, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--gpms-shadow);
+}
+
+.gpms-topbar__left {
+  min-width: 0;
+}
+
+.gpms-kicker,
+.gpms-eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.72rem;
+  color: rgba(148, 163, 184, 0.9);
+}
+
+.gpms-topbar__title,
+.gpms-hero-copy h2,
+.gpms-panel h3 {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.gpms-topbar__title {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+.gpms-topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.gpms-iconchip {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.gpms-iconchip:hover {
+  border-color: rgba(124, 58, 237, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.22), 0 20px 40px rgba(59, 130, 246, 0.18);
+}
+
+.gpms-profilechip {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem 0.5rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.gpms-profilechip strong {
+  display: block;
+  font-size: 0.92rem;
+}
+
+.gpms-profilechip small {
+  display: block;
+  color: var(--gpms-text-muted);
+}
+
+.gpms-avatar,
+.gpms-profile-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--gpms-primary), var(--gpms-secondary));
+  box-shadow: var(--gpms-glow);
+}
+
+.gpms-avatar {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.gpms-profile-avatar {
+  width: 3.5rem;
+  height: 3.5rem;
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.gpms-nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0 1rem;
+  padding: 0.95rem 1rem;
+  border-radius: 18px;
+  color: rgba(255, 255, 255, 0.86);
+  border: 1px solid transparent;
+  background: transparent;
+  transition: transform 300ms ease, box-shadow 300ms ease, background 300ms ease, border-color 300ms ease;
+}
+
+.gpms-nav-link:hover {
+  transform: translateX(4px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.16);
+}
+
+.gpms-nav-link.is-active {
+  color: #fff;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.34), rgba(59, 130, 246, 0.3));
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.22), 0 20px 40px rgba(59, 130, 246, 0.16);
+}
+
+.gpms-logout {
+  width: calc(100% - 2rem);
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.gpms-dashboard {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.gpms-hero-card,
+.gpms-panel,
+.gpms-stat-card,
+.gpms-topbar,
+.shadow-panel,
+.gpms-profile-card,
+.gpms-chart-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--gpms-radius);
+  border: 1px solid var(--gpms-border);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.06));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--gpms-shadow);
+}
+
+.gpms-hero-card,
+.gpms-panel,
+.shadow-panel,
+.rounded-\[2rem\] {
+  padding: 1.4rem;
+}
+
+.gpms-hero-card::before,
+.gpms-panel::before,
+.shadow-panel::before,
+.gpms-stat-card::before,
+.gpms-topbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.14), transparent 18%),
+    radial-gradient(circle at 80% 0%, rgba(59, 130, 246, 0.12), transparent 18%),
+    radial-gradient(circle at 50% 95%, rgba(6, 182, 212, 0.08), transparent 20%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.gpms-hero-card,
+.gpms-panel,
+.shadow-panel,
+.gpms-stat-card {
+  transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
+}
+
+.gpms-hero-card:hover,
+.gpms-panel:hover,
+.shadow-panel:hover,
+.gpms-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.15), 0 28px 70px rgba(0, 0, 0, 0.36);
+}
+
+.gpms-hero-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.8fr);
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.gpms-hero-copy,
+.gpms-hero-glass {
+  position: relative;
+  z-index: 1;
+}
+
+.gpms-hero-copy h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 0.98;
+  max-width: 12ch;
+}
+
+.gpms-lead,
+.gpms-muted-copy {
+  margin: 0;
+  color: var(--gpms-text-muted);
+  line-height: 1.7;
+}
+
+.gpms-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1.25rem;
+}
+
+.gpms-btn,
+.gpms-mini-action,
+button,
+[type="button"],
+[type="submit"] {
+  border-radius: 999px;
+  transition: transform 300ms ease, box-shadow 300ms ease, filter 300ms ease, border-color 300ms ease;
+}
+
+.gpms-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.95rem 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gpms-btn--primary {
+  color: #fff;
+  background: linear-gradient(135deg, var(--gpms-primary), var(--gpms-secondary), var(--gpms-accent));
+  box-shadow: 0 18px 40px rgba(59, 130, 246, 0.22);
+}
+
+.gpms-btn--ghost,
+.gpms-mini-action {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.gpms-btn:hover,
+.gpms-mini-action:hover,
+button:hover,
+[type="button"]:hover,
+[type="submit"]:hover {
+  transform: translateY(-2px) scale(1.01);
+  filter: brightness(1.03);
+}
+
+.gpms-hero-glass {
+  display: grid;
+  gap: 1rem;
+  align-content: center;
+}
+
+.gpms-profile-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.gpms-profile-card strong,
+.gpms-profile-card span {
+  display: block;
+}
+
+.gpms-profile-card span {
+  color: var(--gpms-text-muted);
+  margin-top: 0.2rem;
+}
+
+.gpms-mini-grid,
+.gpms-month-stats {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.gpms-mini-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.gpms-mini-grid div,
+.gpms-month-stats div {
+  padding: 1rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gpms-mini-grid span,
+.gpms-month-stats span {
+  display: block;
+  color: var(--gpms-text-muted);
+  font-size: 0.92rem;
+}
+
+.gpms-mini-grid strong,
+.gpms-month-stats strong,
+.gpms-stat-card strong {
+  display: block;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  font-weight: 800;
+  margin-top: 0.35rem;
+}
+
+.gpms-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.gpms-stat-card {
+  padding: 1.25rem;
+  min-height: 150px;
+}
+
+.gpms-stat-card span {
+  color: var(--gpms-text-muted);
+  font-size: 0.95rem;
+}
+
+.gpms-stat-card--success strong {
+  color: #34d399;
+}
+
+.gpms-stat-card--warning strong {
+  color: #fbbf24;
+}
+
+.gpms-stat-card--danger strong {
+  color: #fb7185;
+}
+
+.gpms-chart-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.gpms-span-2 {
+  grid-column: span 2;
+}
+
+.gpms-chart-card {
+  display: grid;
+  gap: 1rem;
+  min-height: 100%;
+}
+
+.gpms-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.gpms-panel-head--stack {
+  align-items: flex-start;
+}
+
+.gpms-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  color: #dbeafe;
+  background: rgba(59, 130, 246, 0.14);
+  border: 1px solid rgba(59, 130, 246, 0.22);
+}
+
+.gpms-line-chart {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  align-items: end;
+  gap: 0.65rem;
+  min-height: 260px;
+  padding: 0.5rem 0 0.2rem;
+}
+
+.gpms-line-chart span {
+  position: relative;
+  display: block;
+  height: calc(24% + (var(--i) * 5%));
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(6, 182, 212, 0.95), rgba(59, 130, 246, 0.95), rgba(124, 58, 237, 0.95));
+  box-shadow: 0 14px 30px rgba(59, 130, 246, 0.18);
+}
+
+.gpms-line-chart span::after {
+  content: "";
+  position: absolute;
+  top: -0.35rem;
+  left: 50%;
+  width: 0.7rem;
+  height: 0.7rem;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.14), 0 0 24px rgba(255, 255, 255, 0.45);
+}
+
+.gpms-donut-chart {
+  width: min(230px, 100%);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border-radius: 50%;
+  background:
+    conic-gradient(
+      from 210deg,
+      var(--gpms-success) 0 46%,
+      var(--gpms-warning) 46% 72%,
+      var(--gpms-danger) 72% 100%
+    );
+  position: relative;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+}
+
+.gpms-donut-chart::after {
+  content: "";
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  background: rgba(9, 13, 28, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gpms-legend {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.gpms-legend li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: var(--gpms-text-muted);
+}
+
+.gpms-legend strong {
+  color: #fff;
+}
+
+.dot {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 999px;
+  display: inline-block;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.04);
+}
+
+.dot--success {
+  background: var(--gpms-success);
+}
+
+.dot--warning {
+  background: var(--gpms-warning);
+}
+
+.dot--danger {
+  background: var(--gpms-danger);
+}
+
+.gpms-bar-chart {
+  display: flex;
+  align-items: end;
+  gap: 0.7rem;
+  min-height: 220px;
+  padding-top: 0.5rem;
+}
+
+.gpms-bar-chart span {
+  flex: 1;
+  border-radius: 999px 999px 16px 16px;
+  background: linear-gradient(180deg, rgba(6, 182, 212, 0.9), rgba(59, 130, 246, 0.95), rgba(124, 58, 237, 0.95));
+  box-shadow: 0 18px 36px rgba(59, 130, 246, 0.18);
+}
+
+.gpms-filter-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr 0.9fr auto;
+  gap: 1rem;
+  align-items: end;
+}
+
+.gpms-input-wrap {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.gpms-input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(148, 163, 184, 0.9);
+  pointer-events: none;
+}
+
+.gpms-input-wrap {
+  position: relative;
+}
+
+.gpms-input-wrap input,
+.gpms-input-wrap select,
+.gpms-input-wrap textarea,
+input,
+select,
+textarea {
+  width: 100%;
+  min-height: 3.2rem;
+  border-radius: 999px !important;
+  padding: 0.9rem 1.05rem;
+  padding-left: 3rem;
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 12px 24px rgba(0, 0, 0, 0.16) !important;
+}
+
+.gpms-input-wrap input::placeholder,
+input::placeholder,
+textarea::placeholder {
+  color: rgba(148, 163, 184, 0.8);
+}
+
+.gpms-input-wrap input:focus,
+.gpms-input-wrap select:focus,
+.gpms-input-wrap textarea:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: rgba(59, 130, 246, 0.38) !important;
+  box-shadow:
+    0 0 0 1px rgba(59, 130, 246, 0.24),
+    0 0 0 4px rgba(59, 130, 246, 0.12),
+    0 18px 40px rgba(59, 130, 246, 0.12) !important;
+}
+
+.gpms-filter-actions {
+  display: flex;
+  align-items: end;
+}
+
+.gpms-table-wrap {
+  overflow-x: auto;
+  border-radius: 24px;
+}
+
+.gpms-table,
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.8rem;
+}
+
+.gpms-table thead th,
+thead th {
+  color: rgba(148, 163, 184, 0.95);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  padding: 0 1rem 0.4rem;
+}
+
+.gpms-table tbody tr,
+tbody tr {
+  background: rgba(255, 255, 255, 0.05);
+  transition: transform 260ms ease, background 260ms ease, box-shadow 260ms ease;
+}
+
+.gpms-table tbody tr:hover,
+tbody tr:hover {
+  background: rgba(124, 58, 237, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+}
+
+.gpms-table tbody td,
+tbody td {
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.gpms-table tbody tr td:first-child,
+tbody tr td:first-child {
+  border-top-left-radius: 18px;
+  border-bottom-left-radius: 18px;
+}
+
+.gpms-table tbody tr td:last-child,
+tbody tr td:last-child {
+  border-top-right-radius: 18px;
+  border-bottom-right-radius: 18px;
+}
+
+.gpms-badge,
+.rounded-full.px-3.py-1,
+.rounded-full.px-3.py-1\.5 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px !important;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.14);
+}
+
+.gpms-badge--success {
+  background: rgba(34, 197, 94, 0.16);
+  color: #86efac;
+}
+
+.gpms-badge--warning {
+  background: rgba(245, 158, 11, 0.16);
+  color: #fcd34d;
+}
+
+.gpms-badge--danger {
+  background: rgba(239, 68, 68, 0.16);
+  color: #fda4af;
+}
+
+.gpms-badge--info {
+  background: rgba(59, 130, 246, 0.16);
+  color: #93c5fd;
+}
+
+.gpms-text-link {
+  color: #bfdbfe;
+  font-weight: 600;
+}
+
+.gpms-text-link:hover {
+  color: #fff;
+}
+
+.gpms-empty {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--gpms-text-muted);
+}
+
+.gpms-fade-in {
+  animation: gpmsFadeIn 420ms ease both;
+}
+
+@keyframes gpmsFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gpms-line-chart span,
+.gpms-bar-chart span,
+.gpms-btn--primary,
+.gpms-nav-link.is-active {
+  animation: gpmsGlow 6s ease-in-out infinite;
+}
+
+@keyframes gpmsGlow {
+  0%,
+  100% {
+    box-shadow: 0 18px 36px rgba(59, 130, 246, 0.16);
+  }
+  50% {
+    box-shadow: 0 18px 40px rgba(124, 58, 237, 0.22);
+  }
+}
+
+@media (max-width: 1200px) {
+  .gpms-chart-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gpms-span-2 {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 1024px) {
+  aside {
+    position: relative;
+    height: auto;
+  }
+
+  .gpms-hero-card,
+  .gpms-chart-grid,
+  .gpms-stats-grid,
+  .gpms-filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gpms-span-2 {
+    grid-column: auto;
+  }
+
+  .gpms-topbar {
+    margin: 0.75rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .gpms-hero-card,
+  .gpms-panel,
+  .shadow-panel,
+  .gpms-stat-card,
+  .gpms-topbar {
+    border-radius: 22px;
+  }
+
+  .gpms-hero-copy h2 {
+    font-size: clamp(1.7rem, 8vw, 2.3rem);
+  }
+
+  .gpms-hero-actions,
+  .gpms-topbar__actions {
+    width: 100%;
+  }
+
+  .gpms-btn,
+  .gpms-mini-action {
+    width: 100%;
+  }
+}
+
+/* ----------------------------------------------------------------------
+   Shell layout and compact dashboard overrides
+   ---------------------------------------------------------------------- */
+
+:root {
+  --gpms-sidebar-width: 17rem;
+  --gpms-sidebar-collapsed: 0px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+.gpms-shell {
+  min-height: 100vh;
+  position: relative;
+}
+
+.gpms-sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: var(--gpms-sidebar-width);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0.85rem 1rem 0.85rem;
+  gap: 1rem;
+  overflow-y: auto;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(12, 18, 38, 0.96), rgba(8, 12, 26, 0.96));
+}
+
+.gpms-sidebar__brand,
+.gpms-sidebar__profile {
+  position: relative;
+  z-index: 1;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.gpms-sidebar__brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1rem;
+}
+
+.gpms-sidebar__profile {
+  padding: 1rem;
+}
+
+.gpms-sidebar__nav {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.gpms-sidebar__logout {
+  margin-top: auto;
+}
+
+.gpms-main {
+  margin-left: var(--gpms-sidebar-width);
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.gpms-main__chrome {
+  min-height: 100vh;
+  padding: 0.75rem 0.75rem 1.25rem;
+}
+
+.gpms-content {
+  padding-top: 1rem;
+}
+
+.gpms-topbar {
+  top: 0.75rem;
+  margin: 0 0 1rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 200ms ease, background 200ms ease, border-color 200ms ease;
+}
+
+.gpms-topbar:hover {
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.24);
+}
+
+.gpms-overview-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(220px, 0.75fr);
+  gap: 1rem;
+  align-items: stretch;
+  min-height: 250px;
+}
+
+.gpms-overview-copy h2 {
+  margin-top: 0.35rem;
+  font-size: clamp(2.75rem, 4vw, 3.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  max-width: 12ch;
+}
+
+.gpms-overview-art {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  padding: 1rem;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.3), transparent 34%),
+    radial-gradient(circle at 75% 25%, rgba(59, 130, 246, 0.22), transparent 28%),
+    radial-gradient(circle at 60% 85%, rgba(6, 182, 212, 0.16), transparent 30%),
+    rgba(255, 255, 255, 0.04);
+}
+
+.gpms-overview-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(10px);
+  opacity: 0.8;
+}
+
+.gpms-overview-orb--primary {
+  top: 14%;
+  right: 12%;
+  width: 9rem;
+  height: 9rem;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.85), rgba(124, 58, 237, 0.08));
+}
+
+.gpms-overview-orb--secondary {
+  bottom: 12%;
+  left: 10%;
+  width: 7rem;
+  height: 7rem;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.75), rgba(59, 130, 246, 0.06));
+}
+
+.gpms-stats-grid {
+  grid-auto-rows: 1fr;
+}
+
+.gpms-stat-card {
+  min-height: 160px;
+}
+
+.gpms-stat-card::after {
+  content: "";
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.36);
+}
+
+.gpms-stat-card--success::after {
+  background: var(--gpms-success);
+}
+
+.gpms-stat-card--warning::after {
+  background: var(--gpms-warning);
+}
+
+.gpms-stat-card--danger::after {
+  background: var(--gpms-danger);
+}
+
+.gpms-stat-card strong {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.gpms-chart-grid {
+  align-items: stretch;
+}
+
+.gpms-chart-card,
+.gpms-panel {
+  min-height: 100%;
+}
+
+.gpms-chart-canvas {
+  position: relative;
+  min-height: 280px;
+  height: 280px;
+}
+
+.gpms-chart-canvas--sm {
+  min-height: 240px;
+  height: 240px;
+}
+
+.gpms-chart-canvas canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.gpms-panel h3 {
+  font-size: 1.1rem;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.gpms-line-chart,
+.gpms-bar-chart {
+  animation: none;
+}
+
+.gpms-line-chart span,
+.gpms-bar-chart span {
+  animation: none;
+  transition: transform 220ms ease-out, filter 220ms ease-out;
+}
+
+.gpms-line-chart span:hover,
+.gpms-bar-chart span:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.05);
+}
+
+.gpms-btn,
+.gpms-mini-action,
+.gpms-nav-link,
+.gpms-iconchip {
+  transition-duration: 200ms;
+  transition-timing-function: ease-out;
+}
+
+.gpms-btn--primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.gpms-btn--primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.22) 45%, transparent 70%);
+  transform: translateX(-120%);
+}
+
+.gpms-btn--primary:hover::after {
+  transform: translateX(120%);
+  transition: transform 500ms ease-out;
+}
+
+.gpms-btn--primary:hover,
+.gpms-mini-action:hover,
+.gpms-nav-link:hover,
+.gpms-iconchip:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+
+.gpms-btn--primary,
+.gpms-nav-link.is-active {
+  animation: none;
+}
+
+.gpms-panel,
+.gpms-stat-card,
+.gpms-hero-card,
+.gpms-overview-card {
+  animation: gpmsFadeIn 260ms ease-out both;
+}
+
+.gpms-panel:nth-child(2),
+.gpms-panel:nth-child(3),
+.gpms-panel:nth-child(4),
+.gpms-stat-card:nth-child(2),
+.gpms-stat-card:nth-child(3),
+.gpms-stat-card:nth-child(4) {
+  animation-delay: 0s;
+}
+
+.gpms-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: rgba(11, 16, 32, 0.92);
+  backdrop-filter: blur(18px);
+}
+
+.gpms-table tbody tr:nth-child(even),
+tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.gpms-table tbody tr:hover,
+tbody tr:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
+}
+
+.gpms-table-wrap {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.rounded-\[2rem\].bg-white,
+.rounded-3xl.bg-white,
+.rounded-2xl.bg-white,
+.bg-white.shadow-panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.06)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: var(--gpms-shadow) !important;
+}
+
+@media (max-width: 1200px) {
+  .gpms-overview-card,
+  .gpms-chart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gpms-span-2 {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  body {
+    overflow: auto;
+  }
+
+  .gpms-sidebar {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .gpms-main {
+    margin-left: 0;
+    height: auto;
+    overflow: visible;
+  }
+
+  .gpms-main__chrome {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .gpms-topbar__actions,
+  .gpms-hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .gpms-btn,
+  .gpms-mini-action {
+    width: 100%;
+  }
+
+  .gpms-overview-card,
+  .gpms-topbar {
+    border-radius: 20px;
+  }
+
+  .gpms-overview-copy h2 {
+    font-size: clamp(2rem, 10vw, 2.6rem);
+  }
+
+  .gpms-stats-grid,
+  .gpms-filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gpms-chart-canvas,
+  .gpms-chart-canvas--sm {
+    min-height: 220px;
+    height: 220px;
+  }
+}
+
+/* ----------------------------------------------------------------------
+   Compact SaaS Dashboard Override
+   ---------------------------------------------------------------------- */
+
+:root {
+  --gpms-sidebar-width: 250px;
+  --gpms-shell-gap: 24px;
+  --gpms-shell-gap-lg: 32px;
+  --gpms-card-radius: 20px;
+}
+
+body {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(79, 124, 255, 0.14), transparent 20%),
+    radial-gradient(circle at 82% 10%, rgba(124, 58, 237, 0.16), transparent 18%),
+    linear-gradient(180deg, #09090f 0%, #080810 100%);
+}
+
+.gpms-shell {
+  min-height: 100vh;
+}
+
+.gpms-sidebar {
+  width: var(--gpms-sidebar-width);
+  padding: 24px 14px;
+}
+
+.gpms-sidebar__brand,
+.gpms-sidebar__profile {
+  border-radius: 20px;
+  padding: 16px;
+}
+
+.gpms-sidebar__nav {
+  gap: 8px;
+}
+
+.gpms-nav-link {
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.gpms-nav-link.is-active {
+  background: linear-gradient(135deg, rgba(79, 124, 255, 0.22), rgba(124, 58, 237, 0.24));
+  box-shadow: 0 0 0 1px rgba(79, 124, 255, 0.22), 0 14px 34px rgba(79, 124, 255, 0.12);
+}
+
+.gpms-main {
+  margin-left: var(--gpms-sidebar-width);
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.gpms-main__chrome {
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.gpms-content {
+  padding-top: 24px;
+}
+
+.gpms-topbar {
+  position: sticky;
+  top: 16px;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: auto minmax(240px, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  padding: 18px 20px;
+  border-radius: 20px;
+  background: rgba(12, 15, 28, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.24);
+}
+
+.gpms-topbar__title {
+  font-size: 34px;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+}
+
+.gpms-topbar__search {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  justify-self: center;
+}
+
+.gpms-topbar__search input {
+  width: 100%;
+  height: 46px;
+  padding: 0 18px 0 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+.gpms-topbar__search input:focus {
+  border-color: rgba(79, 124, 255, 0.35) !important;
+  box-shadow: 0 0 0 4px rgba(79, 124, 255, 0.12) !important;
+}
+
+.gpms-topbar__search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(148, 163, 184, 0.85);
+  pointer-events: none;
+}
+
+.gpms-topbar__actions {
+  gap: 12px;
+}
+
+.gpms-dashboard {
+  display: grid;
+  gap: var(--gpms-shell-gap-lg);
+}
+
+.gpms-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gpms-shell-gap);
+}
+
+.gpms-stat-card {
+  min-height: 160px;
+  padding: 24px;
+  border-radius: var(--gpms-card-radius);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.2);
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out, border-color 200ms ease-out;
+}
+
+.gpms-stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 0 1px rgba(79, 124, 255, 0.18), 0 24px 50px rgba(79, 124, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.gpms-stat-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle at 20% 10%, rgba(79, 124, 255, 0.16), transparent 28%);
+}
+
+.gpms-stat-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.gpms-stat-label {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.gpms-stat-value {
+  display: block;
+  font-size: 42px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.gpms-stat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.gpms-stat-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.gpms-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+
+.gpms-indicator--blue {
+  background: var(--gpms-primary);
+}
+
+.gpms-indicator--green {
+  background: var(--gpms-success);
+}
+
+.gpms-indicator--orange {
+  background: var(--gpms-warning);
+}
+
+.gpms-indicator--red {
+  background: var(--gpms-danger);
+}
+
+.gpms-growth {
+  color: #cbd5e1;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.gpms-chart-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gpms-shell-gap);
+}
+
+.gpms-span-8 {
+  grid-column: span 8;
+}
+
+.gpms-span-4 {
+  grid-column: span 4;
+}
+
+.gpms-panel {
+  padding: 24px;
+  border-radius: var(--gpms-card-radius);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.2);
+}
+
+.gpms-panel--chart {
+  min-height: 420px;
+}
+
+.gpms-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.gpms-panel-head h3 {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.gpms-eyebrow {
+  margin-bottom: 6px;
+  font-size: 12px;
+  letter-spacing: 0.24em;
+}
+
+.gpms-pill {
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.gpms-chart-canvas {
+  position: relative;
+  width: 100%;
+}
+
+.gpms-chart-canvas--large {
+  height: 320px;
+}
+
+.gpms-chart-canvas--medium {
+  height: 220px;
+}
+
+.gpms-chart-canvas canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.gpms-legend {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.gpms-legend li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.gpms-legend--compact {
+  justify-content: center;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+}
+
+.gpms-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gpms-shell-gap);
+}
+
+.gpms-action-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 112px;
+  padding: 20px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out, border-color 200ms ease-out;
+}
+
+.gpms-action-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 0 0 1px rgba(79, 124, 255, 0.18), 0 18px 36px rgba(79, 124, 255, 0.14);
+  border-color: rgba(79, 124, 255, 0.2);
+}
+
+.gpms-action-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(79, 124, 255, 0.24), rgba(124, 58, 237, 0.22));
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+
+.gpms-action-card strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.gpms-action-card p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--gpms-text-muted);
+  line-height: 1.5;
+}
+
+.gpms-action-card--disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
+}
+
+.gpms-action-card--disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.gpms-timeline {
+  display: grid;
+  gap: 16px;
+}
+
+.gpms-timeline-item {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+}
+
+.gpms-timeline-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
+}
+
+.gpms-timeline-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #fff;
+}
+
+.gpms-timeline-mark.is-success {
+  background: rgba(34, 197, 94, 0.18);
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.18);
+}
+
+.gpms-timeline-mark.is-warning {
+  background: rgba(245, 158, 11, 0.18);
+  box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.18);
+}
+
+.gpms-timeline-mark.is-danger {
+  background: rgba(239, 68, 68, 0.18);
+  box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.18);
+}
+
+.gpms-timeline-body {
+  min-width: 0;
+}
+
+.gpms-timeline-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.gpms-timeline-top strong {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.gpms-timeline-top span {
+  color: var(--gpms-text-muted);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.gpms-timeline-body p {
+  margin: 8px 0 0;
+  color: #cbd5e1;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.gpms-fade-in {
+  animation: gpmsFadeIn 220ms ease-out both;
+}
+
+@keyframes gpmsFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gpms-btn,
+.gpms-mini-action,
+.gpms-action-card,
+.gpms-iconchip,
+.gpms-nav-link {
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out, border-color 200ms ease-out, background 200ms ease-out;
+}
+
+.gpms-btn--primary,
+.gpms-action-card__icon {
+  background-image: linear-gradient(135deg, #4f7cff 0%, #7c3aed 100%);
+}
+
+.gpms-btn--primary {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gpms-btn--primary:hover,
+.gpms-mini-action:hover,
+.gpms-iconchip:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+
+.gpms-btn--primary::after {
+  display: none;
+}
+
+.gpms-table thead th {
+  background: rgba(9, 9, 15, 0.92);
+}
+
+@media (max-width: 1200px) {
+  .gpms-chart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gpms-span-8,
+  .gpms-span-4 {
+    grid-column: auto;
+  }
+
+  .gpms-actions-grid,
+  .gpms-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  body {
+    overflow: auto;
+  }
+
+  .gpms-sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    z-index: 10;
+  }
+
+  .gpms-main {
+    margin-left: 0;
+    height: auto;
+    overflow: visible;
+  }
+
+  .gpms-topbar {
+    grid-template-columns: 1fr;
+  }
+
+  .gpms-topbar__search {
+    max-width: none;
+    justify-self: stretch;
+  }
+}
+
+@media (max-width: 768px) {
+  .gpms-main__chrome {
+    padding: 16px;
+  }
+
+  .gpms-content {
+    padding-top: 16px;
+  }
+
+  .gpms-stats-grid,
+  .gpms-actions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gpms-panel,
+  .gpms-stat-card,
+  .gpms-topbar {
+    border-radius: 18px;
+  }
+
+  .gpms-timeline-item {
+    grid-template-columns: 1fr;
+  }
+
+  .gpms-timeline-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

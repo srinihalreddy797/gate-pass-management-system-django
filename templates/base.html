@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gate Pass Management System{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: "#f5f9ff",
+                            100: "#e9f2ff",
+                            500: "#2563eb",
+                            700: "#1d4ed8",
+                            900: "#1e3a8a"
+                        }
+                    },
+                    boxShadow: {
+                        panel: "0 20px 45px rgba(15, 23, 42, 0.12)"
+                    }
+                }
+            }
+        };
+    </script>
+    <link rel="stylesheet" href="{% static 'app/style.css' %}">
+</head>
+<body class="h-full bg-slate-100 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+    <div class="gpms-shell min-h-full">
+        {% if request.user.is_authenticated %}
+            <aside class="gpms-sidebar" aria-label="Primary navigation">
+                <div class="gpms-sidebar__brand">
+                    <div>
+                        <p class="text-xs uppercase tracking-[0.35em] text-brand-500">GPMS</p>
+                        <h1 class="text-lg font-bold">Gate Pass System</h1>
+                    </div>
+                    <button id="theme-toggle-side" class="gpms-iconchip" aria-label="Toggle dark mode">&#9679;</button>
+                </div>
+
+                <div class="gpms-sidebar__profile">
+                    <p class="text-sm opacity-80">{{ request.user.get_role_display }}</p>
+                    <p class="mt-1 text-base font-semibold">{{ request.user.get_full_name|default:request.user.username }}</p>
+                    <p class="text-sm opacity-70">{{ request.user.username }}</p>
+                </div>
+
+                <nav class="gpms-sidebar__nav">
+                    <a href="{% url 'dashboard' %}" class="{% if request.resolver_match.url_name == 'dashboard' %}gpms-nav-link is-active{% else %}gpms-nav-link{% endif %}">&#127968; Dashboard</a>
+                    {% if request.user.role == 'USER' %}
+                        <a href="{% url 'apply-pass' %}" class="{% if request.resolver_match.url_name == 'apply-pass' %}gpms-nav-link is-active{% else %}gpms-nav-link{% endif %}">&#128221; Apply Pass</a>
+                        <a href="{% url 'pass-list' %}" class="{% if request.resolver_match.url_name == 'pass-list' %}gpms-nav-link is-active{% else %}gpms-nav-link{% endif %}">&#128220; Pass History</a>
+                    {% endif %}
+                    {% if request.user.role == 'ADMIN' %}
+                        <a href="{% url 'admin-dashboard' %}" class="{% if request.resolver_match.url_name == 'admin-dashboard' %}gpms-nav-link is-active{% else %}gpms-nav-link{% endif %}">&#128100; Profile</a>
+                        <a href="/admin/" class="gpms-nav-link">&#9881; Settings</a>
+                    {% endif %}
+                    {% if request.user.role == 'SECURITY' %}
+                        <a href="{% url 'security-dashboard' %}" class="{% if request.resolver_match.url_name == 'security-dashboard' %}gpms-nav-link is-active{% else %}gpms-nav-link{% endif %}">&#128269; Verify Passes</a>
+                    {% endif %}
+                </nav>
+
+                <form method="post" action="{% url 'logout' %}" class="gpms-sidebar__logout">
+                    {% csrf_token %}
+                    <button type="submit" class="gpms-nav-link gpms-logout">&#128682; Logout</button>
+                </form>
+            </aside>
+        {% endif %}
+
+        <main class="gpms-main">
+            <div class="gpms-main__chrome">
+                <header class="gpms-topbar">
+                    <div class="gpms-topbar__left">
+                        <p class="gpms-kicker">Dashboard</p>
+                        <h2 class="gpms-topbar__title">{% block page_title %}Gate Pass Management System{% endblock %}</h2>
+                    </div>
+                    {% if request.user.is_authenticated %}
+                        <form class="gpms-topbar__search" action="{% url 'pass-list' %}" method="get">
+                            <span class="gpms-topbar__search-icon" aria-hidden="true">&#8981;</span>
+                            <input type="search" name="search" placeholder="Search passes" aria-label="Search passes">
+                        </form>
+                    {% endif %}
+                    <div class="gpms-topbar__actions">
+                        {% if request.user.is_authenticated %}
+                            <button type="button" class="gpms-iconchip" aria-label="Notifications">&#128276;</button>
+                            <div class="gpms-profilechip">
+                                <span class="gpms-avatar">{{ request.user.first_name|default:request.user.username|slice:":1"|upper }}</span>
+                                <span>
+                                    <strong>{{ request.user.get_full_name|default:request.user.username }}</strong>
+                                    <small>{{ request.user.get_role_display }}</small>
+                                </span>
+                            </div>
+                            <button id="theme-toggle" class="gpms-iconchip" aria-label="Toggle dark mode">&#9679;</button>
+                        {% else %}
+                            <button id="theme-toggle-auth" class="gpms-iconchip" aria-label="Toggle dark mode">&#9679;</button>
+                        {% endif %}
+                    </div>
+                </header>
+
+                <div class="gpms-content">
+                    {% if messages %}
+                        <div class="mb-6 space-y-3">
+                            {% for message in messages %}
+                                <div class="rounded-2xl border px-4 py-3 text-sm shadow-sm {% if message.tags == 'success' %}border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/40 dark:text-emerald-300{% elif message.tags == 'error' %}border-rose-200 bg-rose-50 text-rose-700 dark:border-rose-900 dark:bg-rose-950/40 dark:text-rose-300{% else %}border-sky-200 bg-sky-50 text-sky-700 dark:border-sky-900 dark:bg-sky-950/40 dark:text-sky-300{% endif %}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const root = document.documentElement;
+        const storedTheme = localStorage.getItem("gpms-theme");
+        if (storedTheme === "dark") {
+            root.classList.add("dark");
+        }
+
+        function toggleTheme() {
+            root.classList.toggle("dark");
+            localStorage.setItem("gpms-theme", root.classList.contains("dark") ? "dark" : "light");
+        }
+
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeToggleSide = document.getElementById("theme-toggle-side");
+        const themeToggleAuth = document.getElementById("theme-toggle-auth");
+        if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
+        if (themeToggleSide) themeToggleSide.addEventListener("click", toggleTheme);
+        if (themeToggleAuth) themeToggleAuth.addEventListener("click", toggleTheme);
+    </script>
+    <script src="{% static 'app/transitions.js' %}" defer></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

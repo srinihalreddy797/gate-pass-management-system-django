@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Security Dashboard{% endblock %}
+
+{% block content %}
+<div class="grid gap-8 xl:grid-cols-[1.1fr,0.9fr]">
+    <section class="rounded-[2rem] bg-white p-6 shadow-panel dark:bg-slate-900">
+        <p class="text-sm uppercase tracking-[0.35em] text-brand-500">Security Dashboard</p>
+        <h2 class="mt-2 text-3xl font-bold">Manual Pass ID verification</h2>
+        <form method="post" class="mt-8 grid gap-4 md:grid-cols-[2fr,auto]">
+            {% csrf_token %}
+            <div>
+                <label for="{{ form.pass_id.id_for_label }}">Pass ID</label>
+                {{ form.pass_id }}
+                {{ form.pass_id.errors }}
+            </div>
+            <div class="flex items-end">
+                <button type="submit" class="w-full rounded-xl bg-brand-500 px-5 py-3 font-semibold text-white hover:bg-brand-700">Verify</button>
+            </div>
+        </form>
+
+        {% if pass_record %}
+            <div class="mt-8 gpms-panel">
+                <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                    <div>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Pass Details</p>
+                        <h3 class="text-2xl font-bold">{{ pass_record.pass_id }}</h3>
+                    </div>
+                    <span class="rounded-full px-3 py-1 text-xs font-semibold {% if pass_record.status == 'Approved' %}bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300{% elif pass_record.status == 'Rejected' %}bg-rose-100 text-rose-700 dark:bg-rose-950/40 dark:text-rose-300{% else %}bg-amber-100 text-amber-700 dark:bg-amber-950/40 dark:text-amber-300{% endif %}">
+                        {{ pass_record.status }}
+                    </span>
+                </div>
+                <div class="mt-6 grid gap-4 md:grid-cols-2">
+                    <div><p class="text-sm text-slate-500 dark:text-slate-400">User</p><p class="font-semibold">{{ pass_record.user.get_full_name|default:pass_record.user.username }}</p></div>
+                    <div><p class="text-sm text-slate-500 dark:text-slate-400">Department</p><p class="font-semibold">{{ pass_record.department }}</p></div>
+                    <div><p class="text-sm text-slate-500 dark:text-slate-400">Out Time</p><p class="font-semibold">{{ pass_record.out_time|date:"d M Y, h:i A" }}</p></div>
+                    <div><p class="text-sm text-slate-500 dark:text-slate-400">Return Time</p><p class="font-semibold">{{ pass_record.return_time|date:"d M Y, h:i A" }}</p></div>
+                    <div class="md:col-span-2"><p class="text-sm text-slate-500 dark:text-slate-400">Purpose</p><p class="font-semibold">{{ pass_record.purpose }}</p></div>
+                </div>
+                <div class="mt-6 flex flex-wrap gap-3">
+                    <form method="post" action="{% url 'log-action' pass_record.pass_id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="entry">
+                        <button type="submit" class="rounded-xl bg-emerald-500 px-4 py-3 font-semibold text-white">Mark Entry</button>
+                    </form>
+                    <form method="post" action="{% url 'log-action' pass_record.pass_id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="exit">
+                        <button type="submit" class="rounded-xl bg-slate-900 px-4 py-3 font-semibold text-white dark:bg-white dark:text-slate-900">Mark Exit</button>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+    </section>
+
+    <section class="rounded-[2rem] bg-white p-6 shadow-panel dark:bg-slate-900">
+        <h3 class="text-xl font-semibold">Recent gate activity</h3>
+        <div class="mt-6 space-y-4">
+            {% for log in recent_logs %}
+                <div class="gpms-panel p-4">
+                    <div class="flex items-center justify-between">
+                        <p class="font-semibold">{{ log.gate_pass.pass_id }}</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">{{ log.gate_pass.user.username }}</p>
+                    </div>
+                    <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Entry: {{ log.entry_time|date:"d M Y, h:i A"|default:"Not marked" }}</p>
+                    <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Exit: {{ log.exit_time|date:"d M Y, h:i A"|default:"Not marked" }}</p>
+                </div>
+            {% empty %}
+                <p class="text-sm text-slate-500 dark:text-slate-400">No gate activity has been recorded yet.</p>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

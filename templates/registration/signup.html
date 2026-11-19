@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Register | Gate Pass Management System{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-3xl gpms-panel rounded-[2rem] bg-white p-8 dark:bg-slate-900 md:p-10">
+    <h2 class="text-3xl font-bold">Create user account</h2>
+    <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">New registrations are created as regular users for student or employee access.</p>
+    <form method="post" class="mt-8 grid gap-5 md:grid-cols-2">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="{% if field.name == 'password1' or field.name == 'password2' %}md:col-span-2{% endif %}">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {{ field.help_text|safe }}
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+        <div class="md:col-span-2">
+            <button type="submit" class="w-full rounded-xl bg-brand-500 px-4 py-3 font-semibold text-white transition hover:bg-brand-700">Register</button>
+        </div>
+    </form>
+    <p class="mt-6 text-sm text-slate-500 dark:text-slate-400">Already registered? <a href="{% url 'login' %}" class="font-semibold text-brand-500">Back to login</a></p>
+</div>
+{% endblock %}
